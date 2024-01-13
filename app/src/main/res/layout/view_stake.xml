@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/txt_title_stake"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#FFA000"
+            android:elevation="15dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Nombre Alumno"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/cbx_matter_stake"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_title_stake"
+            android:layout_marginTop="10dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edt_point_stake"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cbx_matter_stake"
+            android:layout_marginTop="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txt_point_stake"
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:background="#FDFDFD"
+                android:maxLength="2"
+                android:hint="Puntos"
+                android:text="0"
+                android:textSize="18dp"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/txt_sobre_cien"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cbx_matter_stake"
+            android:layout_alignTop="@+id/edt_point_stake"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="9dp"
+            android:layout_toEndOf="@+id/edt_point_stake"
+            android:text="/100%"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/txt_histori_stake"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/edt_point_stake"
+            android:textColor="#1A8AF9"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:text="Ver historial del alumno"/>
+
+        <Button
+            android:id="@+id/btn_add_stake"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edt_point_stake"
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="#FFA000"
+            android:text="Agregar" />
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

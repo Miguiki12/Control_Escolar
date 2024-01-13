@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/Posponer"
+        android:title="Posponer"
+
+        />
+    <item
+        android:id="@+id/Modificar"
+        android:title="Modificar"
+
+        />
+    <item
+        android:id="@+id/menu_add_student"
+        android:title="Seleccionar alumnos"
+
+        />
+    <item
+        android:id="@+id/Eliminar_Actividad"
+        android:title="Eliminar"
+
+        />
+    <item
+        android:id="@+id/Reenviar"
+        android:title="Reenviar Actividad"
+
+        />
+    <item
+        android:id="@+id/Terminar_Actividad"
+        android:title="Terminar y Archivar"
+        />
+</menu>

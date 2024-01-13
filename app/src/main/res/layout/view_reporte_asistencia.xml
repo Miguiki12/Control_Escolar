@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_datospersonales"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="6dp"
+        app:contentPadding="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:padding="16dp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/barra_Reporte_Asistencia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#FFA000"
+                android:elevation="15dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Reporte Asistencia"
+                android:textColor="@color/white"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/lbl_subtotal_hombres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/barra_Reporte_Asistencia"
+                android:layout_marginTop="20dp"
+                android:text="Subtotal          Hombres"
+                android:textColor="#FFA000"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/lbl_cantidad_hombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/barra_Reporte_Asistencia"
+                android:layout_marginStart="230dp"
+                android:layout_marginTop="20dp"
+                android:text="0"
+                android:textColor="#FFA000"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/lbl_subtotal_mujeres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lbl_subtotal_hombres"
+                android:layout_marginTop="20dp"
+                android:text="Subtotal           Mujeres"
+                android:textColor="#FFA000"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/lbl_cantidad_mujeres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lbl_subtotal_hombres"
+                android:layout_marginStart="230dp"
+                android:layout_marginTop="20dp"
+                android:text="0"
+                android:textColor="#FFA000"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/lbl_total_asistencia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lbl_subtotal_mujeres"
+                android:layout_marginTop="20dp"
+                android:text="Total"
+                android:textColor="#FFA000"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/lbl_cantidad_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lbl_subtotal_mujeres"
+                android:layout_marginStart="230dp"
+                android:layout_marginTop="20dp"
+                android:text="0"
+                android:textColor="#FFA000"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_imprimir_reporte"
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lbl_total_asistencia"
+                android:layout_marginStart="110dp"
+                android:backgroundTint="#FFA000"
+                android:text="Imprimir"
+                android:textSize="12dp" />
+
+            <Button
+                android:id="@+id/btn_enviar_reporte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lbl_total_asistencia"
+                android:backgroundTint="#FFA000"
+                android:text="Director"
+                android:textSize="12dp" />
+
+
+            <Button
+                android:id="@+id/btn_mes_reporte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lbl_total_asistencia"
+                android:layout_marginTop="53dp"
+                android:backgroundTint="#FFA000"
+                android:text="   Reporte del Mes    "
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/lbl_status_reporte_asistencia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_enviar_reporte"
+                android:layout_marginTop="5dp"
+                android:text=""
+                android:textColor="#FA3D68"
+                android:textSize="10dp"
+                android:textStyle="normal" />
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

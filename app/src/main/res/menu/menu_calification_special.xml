@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/repleaceCalification"
+        android:title="Remplazar Calificación"
+        android:icon="@drawable/ic_repleace_califications"
+        />
+    <item
+        android:id="@+id/plasCalification"
+        android:title="Sumar Calificación"
+        android:icon="@drawable/ic_sum_califications"
+        />
+</menu>

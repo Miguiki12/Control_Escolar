@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context=".MainActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_Principal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="6dp"
+        app:contentPadding="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/lbl_Ingreso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="CONTROL ESCOLAR"
+                android:textSize="20dp" />
+
+            <ImageView
+                android:id="@+id/image_Ingreso"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_below="@+id/lbl_Ingreso"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/escueladefault" />
+
+
+            <EditText
+                android:id="@+id/txt_IngresoCorreo"
+                android:layout_width="311dp"
+                android:layout_height="45dp"
+                android:layout_below="@+id/image_Ingreso"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:drawableLeft="@android:drawable/sym_action_email"
+                android:hint="Correo Electrónico"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/txt_IngresoContrasena"
+                android:layout_width="312dp"
+                android:layout_height="45dp"
+                android:layout_below="@+id/txt_IngresoCorreo"
+                android:layout_centerHorizontal="true"
+                android:drawableLeft="@android:drawable/ic_lock_idle_lock"
+                android:hint="Contraseña"
+                android:inputType="textPersonName"
+                android:password="true" />
+
+
+            <Button
+
+                android:id="@+id/btn_Ingresologin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_IngresoContrasena"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="20dp"
+
+                android:layout_marginBottom="15dp"
+
+                android:text=" Ingresar" />
+
+            <TextView
+                android:id="@+id/lbl_IngresoRecuperacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_Ingresologin"
+                android:layout_centerHorizontal="true"
+                android:text="¿Olvidaste tu contraseña?"
+                android:textColor="#0E0E0E"
+                android:textSize="16dp" />
+
+            <CheckBox
+                android:id="@+id/cbx_IngresoRecordar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lbl_IngresoRecuperacion"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:text="Recordarme"
+                android:textSize="18dp" />
+
+
+            <Button
+
+                android:id="@+id/btn_IngresoRegistra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cbx_IngresoRecordar"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+
+
+                android:text="SOY NUEVO USUARIO" />
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
+</ScrollView>

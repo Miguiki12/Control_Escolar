@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_datospersonales"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+
+            <TextView
+                android:id="@+id/barra_Arguementar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#1A8AF9"
+                android:elevation="15dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Detalles del argumento"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_detalle_argumentacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="1dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/barra_Arguementar">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txt_detalle_argumentacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FDFDFD"
+                    android:hint="Detalle el argumento"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Button
+                android:id="@+id/btn_Argumentar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edit_detalle_argumentacion"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:text="Argumentar" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+</LinearLayout>

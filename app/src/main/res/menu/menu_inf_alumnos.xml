@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/nav_importar_alumnos"
+        android:icon="@drawable/ic_importar_lista"
+        android:title="Importar"
+        />
+    <item
+        android:id="@+id/nav_agregar_datos"
+        android:title="Agregar datos"
+        />
+    <item
+        android:id="@+id/nav_Reorganizar_Nlista"
+        android:icon="@drawable/crear_asistencia"
+        android:title="Reorganizar"
+        />
+
+
+    <item
+        android:id="@+id/nav_Agregar_Alumno"
+        android:title="Nuevo"
+        android:icon="@drawable/ic_add_alumnos"
+        app:showAsAction="always"/>
+
+</menu>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:backgroundTint="#0BD5EF"
+        tools:context=".actRegistrar">
+
+       <!-- <androidx.cardview.widget.CardView
+            android:id="@+id/card_enail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+
+            app:cardCornerRadius="10dp"
+            app:cardElevation="6dp"
+            app:contentPadding="4dp">
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <EditText
+                    android:id="@+id/txtREmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/txtRPassword1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+
+                    android:layout_below="@+id/txtREmail"
+                    android:hint="Contraseña"
+                    android:password="true"
+                    android:textSize="16sp" />
+
+
+                <EditText
+                    android:id="@+id/txtRPassword2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtRPassword1"
+                    android:hint="Repita contraseña"
+                    android:password="true"
+                    android:textSize="16sp" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>-->
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_datospersonales"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+
+            app:cardCornerRadius="10dp"
+            app:cardElevation="6dp"
+            app:contentPadding="4dp">
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+
+                <EditText
+                    android:id="@+id/txtRNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nombre"
+                    android:inputType="textCapSentences" />
+
+
+                <EditText
+                    android:id="@+id/txtRApellidos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtRNombre"
+                    android:hint="Apellidos"
+                    android:inputType="textCapSentences" />
+
+
+                <EditText
+                    android:id="@+id/txtRCelular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtRApellidos"
+                    android:hint="Celular"
+                    android:inputType="phone" />
+
+                <EditText
+                    android:id="@+id/txtRColonia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtRCelular"
+                    android:hint="Colonia"
+                    android:inputType="textCapSentences" />
+
+
+                <EditText
+                    android:id="@+id/txtRDireccion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtRColonia"
+                    android:hint="Direccion"
+                    android:inputType="textCapSentences" />
+
+                <TextView
+                    android:id="@+id/lblNacimiento"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtRDireccion"
+                    android:text="Fecha de nacimiento"
+                    android:textSize="16dp"
+                    android:inputType="textCapSentences"
+                    android:visibility="invisible"
+                    android:textStyle="bold" />
+
+                <DatePicker
+                    android:id="@+id/date_RFechanacimiento"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_below="@+id/lblNacimiento"
+                    android:calendarViewShown="false"
+                    android:visibility="invisible"
+                    android:datePickerMode="spinner" />
+
+                <Button
+                    android:id="@+id/btnRegistrarCliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_below="@+id/date_RFechanacimiento"
+                    android:backgroundTint="#05C2DA"
+
+                    android:text="SIGUIENTE"
+                    android:textColor="#FBFBFB"
+                    android:textColorLink="#FFFFFF"
+                    android:textSize="18dp" />
+
+
+
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</ScrollView>

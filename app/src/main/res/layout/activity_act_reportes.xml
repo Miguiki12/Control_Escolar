@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".act_Reportes">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_datospersonales"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="6dp"
+        app:contentPadding="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+    <TextView
+        android:id="@+id/txt_Titulo_Reporte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#1A8AF9"
+        android:elevation="15dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Datos del Alumno"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/cb_Materias_Reportes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_Titulo_Reporte"
+            android:layout_marginTop="10dp"
+            />
+
+        <RadioGroup
+            android:id="@+id/rg_Reportes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/cb_Materias_Reportes">
+            <RadioButton
+                android:id="@+id/rb_llamada_atencion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Llamada de atencion"
+                android:checked="false"/>
+            <RadioButton
+            android:id="@+id/rb_Reporte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Reporte"
+            android:checked="false"/>
+            <RadioButton
+                android:id="@+id/rb_Citatorio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Citatorio"
+                android:checked="false"/>
+            <RadioButton
+                android:id="@+id/rb_Suspender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Suspender"
+                android:visibility="invisible"
+                android:checked="false"/>
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/ed_Descripcion_Reportes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rg_Reportes"
+            android:inputType="textAutoCorrect"
+            android:hint="Describir la incidencia"
+            android:maxLength="255"/>
+
+        <TextView
+            android:id="@+id/txt_Calendario_Reportes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ed_Descripcion_Reportes"
+            android:text="INDIQUE EL DIA"
+            android:textColor="#FF5722"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:drawableLeftCompat="@android:drawable/ic_menu_today" />
+
+        <EditText
+            android:id="@+id/ed_Porcentaje_Reporte"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:inputType="number"
+            android:text="0"
+            android:phoneNumber="true"
+            android:maxLength="2"
+            android:layout_below="@+id/txt_Calendario_Reportes"
+            />
+
+        <TextView
+            android:id="@+id/txt_sobre_cien"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_Calendario_Reportes"
+            android:layout_alignTop="@+id/ed_Porcentaje_Reporte"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="9dp"
+            android:layout_toEndOf="@+id/ed_Porcentaje_Reporte"
+            android:text="/100%"
+            android:textSize="17dp" />
+
+        <Button
+            android:id="@+id/btn_Reporte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/txt_Calendario_Reportes"
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="#FFA000"
+            android:text="Reportar" />
+
+        <TextView
+            android:id="@+id/txt_Historial_Reportes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ed_Porcentaje_Reporte"
+            android:textColor="#1A8AF9"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:text="Ver historial del alumno"/>
+
+
+
+
+    </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

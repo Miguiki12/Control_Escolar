@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_margin="12dp"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="10dp"
+    android:layout_gravity="center"
+    app:cardElevation="6dp"
+    app:contentPadding="4dp">>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image_OpcionesMateria"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/lbl_Materia"
+            android:layout_alignParentEnd="true"
+
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+            android:src="@drawable/more" />
+
+        <TextView
+            android:id="@+id/lbl_Materia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="MATERIA"
+            android:textColor="#1A8AF9"
+            android:textSize="19dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/lbl_DetallesMateria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image_OpcionesMateria"
+            android:text="..." />
+
+        <TextView
+            android:id="@+id/lbl_claveMateria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lbl_DetallesMateria"
+            android:text="id" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

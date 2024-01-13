@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:elevation="0dp"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/bar_help_aspects"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#FFA000"
+                android:elevation="15dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="¿Que necesita saber?"
+                android:textColor="@color/white"
+                android:textSize="19sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/types_aspects"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bar_help_aspects"
+                android:textSize="16dp"
+                android:text="***Para estructurar la calificación, indique el nombre del aspecto y su respectivo porcentaje, asegurándose de que la suma de estos llegue al 100%. Algunos ejemplos de aspectos podrían ser Tareas, Trabajos, Proyectos, Exámenes, etc.\n\n
+Si desea que la asistencia se tome en cuenta para dar valor a la calificación, agréguela de la misma manera que los ejemplos mencionados anteriormente con el nombre 'Asistencia'. Para agregar puntos extras o valorar la participación, se hará de forma individual en estos aspectos y se sumarán como bonificaciones a la calificación. Lo mismo se aplicará para restar puntos en la sección de reportes o mala conducta. "/>
+
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

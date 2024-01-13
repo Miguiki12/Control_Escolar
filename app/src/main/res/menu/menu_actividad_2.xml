@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/Eliminar_Actividad"
+        android:title="Eliminar"
+        />
+    <item
+        android:id="@+id/Reenviar"
+        android:title="Reenviar Activivdad"
+        />
+    <item
+        android:id="@+id/Reenviar_Calificacion"
+        android:title="Reenviar Calificacion"
+        />
+</menu>

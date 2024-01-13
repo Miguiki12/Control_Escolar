@@ -1,0 +1,191 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:backgroundTint="#0BD5EF"
+        tools:context=".act_Escuela">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_datosEscuela"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/barra_escuela"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/purple_500"
+                    android:elevation="15dp"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Agregar Información de la Escuela"
+                    android:textColor="@color/white"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+
+                <ImageView
+                    android:id="@+id/image_datosEscuela"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_below="@id/barra_escuela"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/escueladefault" />
+
+                <Spinner
+                    android:id="@+id/cbx_tipo_escuela"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/tipo_escuela"
+                    android:prompt="@string/tipo"
+                    android:spinnerMode="dialog"
+                    android:layout_below="@+id/image_datosEscuela"
+                    android:layout_marginTop="10dp"/>
+
+
+                <EditText
+                    android:id="@+id/edit_Nombre_Escuela"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cbx_tipo_escuela"
+                    android:layout_marginTop="10dp"
+                    android:hint="Nombre"
+                    android:inputType="textCapSentences" />
+
+                <Spinner
+                    android:id="@+id/cbx_Grado_Escuela"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/edit_Nombre_Escuela"
+                    android:layout_marginTop="10dp"
+                    android:entries="@array/Grado"
+                    android:prompt="@string/grado"
+                    android:spinnerMode="dialog" />
+
+                <Spinner
+                    android:id="@+id/cbx_Grupo_Escuela"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/edit_Nombre_Escuela"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/cbx_Grado_Escuela"
+                    android:entries="@array/Grupo"
+                    android:prompt="@string/grupo"
+                    android:spinnerMode="dialog" />
+
+                <Spinner
+                    android:id="@+id/cbx_Turno_Escuela"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/edit_Nombre_Escuela"
+                    android:layout_toRightOf="@+id/cbx_Grupo_Escuela"
+                    android:layout_marginTop="10dp"
+                    android:entries="@array/Turno"
+                    android:prompt="@string/turno"
+                    android:spinnerMode="dialog" />
+
+                <Spinner
+                    android:id="@+id/cbx_Ciclo_Escuela"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cbx_Grado_Escuela"
+                    android:layout_marginTop="10dp"
+                    android:entries="@array/Ciclo"
+                    android:prompt="@string/ciclo"
+                    android:spinnerMode="dialog" />
+
+                <!-- <Button
+                     android:id="@+id/btn_datosCrear"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_below="@+id/cbx_datosCiclo"
+                     android:layout_marginTop="10dp"
+                     android:text="Crear Escuela" />-->
+
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_datospersonales"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="6dp"
+            app:contentPadding="4dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <EditText
+                    android:id="@+id/edit_Cct_Escuela"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Clave de centro de Trabajo"
+                    android:inputType="textCapSentences" />
+
+                <EditText
+                    android:id="@+id/edit_Telefono_Escuela"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/edit_Cct_Escuela"
+                    android:hint="Telefono de la Escuela"
+                    android:inputType="phone" />
+
+                <EditText
+                    android:id="@+id/edit_Colonia_Escuela"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/edit_Direccion_Escuela"
+                    android:hint="Colonia"
+                    android:inputType="textCapSentences" />
+
+
+                <EditText
+                    android:id="@+id/edit_Direccion_Escuela"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/edit_Telefono_Escuela"
+                    android:hint="Direccion"
+                    android:inputType="textCapSentences" />
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dialog"
+                    android:entries="@array/Entidad_federativa"
+                    android:prompt="@string/entidad"
+
+                    android:layout_below="@+id/edit_Colonia_Escuela"/>
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</ScrollView>

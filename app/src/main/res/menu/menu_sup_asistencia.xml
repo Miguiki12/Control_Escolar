@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <item
+        android:id="@+id/nav_Guardar_Asistencia"
+        android:icon="@drawable/ic_save"
+        android:title="Guardar"
+        app:showAsAction="always"
+        />
+
+
+    <item
+        android:id="@+id/Todos_asistieron"
+        android:icon="@drawable/ic_all_asistence"
+        android:title="Cancelar"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/Buscar_asistencia"
+        android:icon="@drawable/ic_search_white"
+        android:title="Buscar Lista"/>
+    <item
+        android:id="@+id/nav_eliminar_Asistencia"
+        android:icon="@drawable/ic_delete_white"
+        android:title="Eliminar Lista"
+
+        />
+    <item
+        android:id="@+id/Reenviar_Faltas"
+        android:title="Reenviar Faltas"
+        />
+
+
+    <item
+        android:id="@+id/Imprimir_Asistencia"
+        android:title="Reporte Asistencia"
+
+        />
+    <item
+        android:id="@+id/Bitacora"
+        android:title="Bitacora"
+
+        />
+    <item
+        android:id="@+id/Argumentar"
+        android:title="Argumentar"
+
+        />
+    <item
+        android:id="@+id/Bajo_Desempaño"
+        android:title="Bajo Desempaño"
+        />
+
+
+
+</menu>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:padding="16dp">
+
+    <TextView
+        android:id="@+id/lbl_Titulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#1A8AF9"
+        android:elevation="15dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Nombre_Alumno"
+        android:textColor="@color/white"
+        android:textSize="19sp"
+        android:textStyle="bold" />
+    <RadioGroup
+        android:id="@+id/rgp_suspendido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/lbl_Titulo">
+        <RadioButton
+            android:id="@+id/rb_Suspendido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Suspendido"/>
+        <RadioButton
+            android:id="@+id/rb_Justificado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Justificado"/>
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/lb_Inicio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Inicio"
+        android:textSize="25dp"
+        android:layout_below="@+id/rgp_suspendido"/>
+
+    <DatePicker
+        android:id="@+id/dtp_Inicio"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@+id/lb_Inicio"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner" />
+    <TextView
+        android:id="@+id/lb_Fin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fin"
+        android:textSize="25dp"
+        android:layout_below="@+id/dtp_Inicio"/>
+
+    <DatePicker
+        android:id="@+id/dtp_Fin"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@+id/lb_Fin"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner" />
+
+    <Button
+        android:id="@+id/btn_Suspencion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dtp_Fin"
+        android:layout_alignParentEnd="true"
+        android:backgroundTint="#1A8AF9"
+        android:text="Siguiente" />
+
+        <TextView
+            android:id="@+id/txt_Historial_Suspencion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dtp_Fin"
+            android:textColor="#1A8AF9"
+            android:layout_marginTop="15dp"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:text="Ver historial del alumno"/>
+
+
+</RelativeLayout>
+
+</RelativeLayout>

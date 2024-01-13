@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout_aspectos"
+    tools:context=".act_Aspectos">
+
+    <!--<Switch
+        android:id="@+id/checkbox_aspectos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:textSize="25dp"
+        android:text="Incluir Asistencias" />-->
+
+    <GridView
+        android:id="@+id/grid_Aspectos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:columnWidth="150dp"
+
+        android:horizontalSpacing="15dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="30dp" />
+
+        <!--android:layout_below="@id/checkbox_aspectos"-->
+
+
+
+
+</RelativeLayout>

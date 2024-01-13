@@ -1,0 +1,154 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/alumno_foto"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/alumno" />
+
+    <TextView
+        android:id="@+id/alumno_nombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:text="Nombre del alumno"
+        android:textStyle="bold"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/alumno_telefono"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Telefono"
+
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/alumno_correo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="correo"
+
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/alumno_curp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="curp:"
+        android:padding="8dp"/>
+
+    <TextView
+        android:id="@+id/alumno_sexo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#1A8AF9"
+        android:text="Sexo:"
+
+        android:padding="8dp" />
+    <TextView
+        android:id="@+id/alumno_edad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="edad:"
+
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/alumno_domicilio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Domicilio:"
+
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/alumno_colonia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Colonia:"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/alumno_municipio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Municipio:"
+        android:padding="8dp" />
+    <TextView
+        android:id="@+id/alumno_c.p"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="C.P.:"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/alumno_contacto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:text="Datos del contacto"
+        android:textStyle="bold"
+        android:padding="8dp" />
+    <TextView
+        android:id="@+id/alumno_nombre_tutor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tutor:"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/alumno_telefono_tutor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Telefono:"
+        android:padding="8dp" />
+    <TextView
+        android:id="@+id/alumno_correo_tutor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="correo:"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/alumno_situacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:text="Situacion del alumno"
+        android:textStyle="bold"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/alumno_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Situacion:"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/alumno_condicionoado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Condicionado:"
+        android:padding="8dp" />
+
+</LinearLayout>
+
+</ScrollView>
+
+

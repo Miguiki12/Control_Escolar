@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/barra_escuela"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#1FB598"
+            android:elevation="15dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Informacionde la materia"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+
+
+        <!--<EditText
+            android:id="@+id/edit_NobreMateria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/barra_escuela"
+            android:layout_marginTop="20dp"
+            android:hint="Nombre Materia"
+            android:inputType="textPersonName" />-->
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txt_NombreMateria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/barra_escuela">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_NombreMateria"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FDFDFD"
+                android:inputType="textCapSentences"
+                android:hint="Nombre Materia" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <EditText
+            android:id="@+id/edit_TipoMateria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_NombreMateria"
+            android:hint="Tipo"
+            android:inputType="number"
+            android:visibility="invisible" />
+
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

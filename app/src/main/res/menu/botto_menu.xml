@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_principal"
+        android:title="Principal"
+        android:icon="@drawable/principa"/>
+    <item android:id="@+id/nav_asistencia"
+        android:title="Asistencia"
+        android:icon="@drawable/asistencia"/>
+    <item android:id="@+id/nav_actividad"
+        android:title="Actividad"
+        android:icon="@drawable/actividad"/>
+    <item android:id="@+id/nav_calificar"
+        android:title="Calificar"
+        android:icon="@drawable/calificar"/>
+
+
+</menu>

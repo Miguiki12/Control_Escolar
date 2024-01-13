@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".act_Alumno">
+
+    <!--<ListView
+        android:id="@+id/listaAlumnos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="1dp" />-->
+    <GridView
+        android:id="@+id/grid_alumno"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:columnWidth="170dp"
+        android:horizontalSpacing="15dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="35dp" />
+    <!--<GridView
+        android:id="@+id/grid_alumno"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+
+        android:columnCount="2"
+        android:rowCount="3"/>-->
+
+   <!-- <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation_Alumnos"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        app:menu="@menu/menu_inf_alumnos"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />-->
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

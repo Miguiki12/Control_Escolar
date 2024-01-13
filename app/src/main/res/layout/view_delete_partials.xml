@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/card_padecimientos"
+        android:layout_margin="10dp">
+
+        <LinearLayout
+            android:id="@+id/relative_delete_partials"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+            <TextView
+                android:id="@+id/barra_Dias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#1FB598"
+                android:elevation="15dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Indique los parciales que desea borrar "
+                android:textColor="@color/white"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/cbx_partial1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:text="Parcial 1"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/cbx_partial2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cbx_partial1"
+                android:text="Parcial 2"
+                android:enabled="false"
+                android:textSize="18sp" />
+            <CheckBox
+                android:id="@+id/cbx_partial3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cbx_partial2"
+                android:text="Parcial 3"
+                android:enabled="false"
+                android:textSize="18sp" />
+            <CheckBox
+                android:id="@+id/cbx_partial4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cbx_partial3"
+                android:text="Parcial 4"
+                android:enabled="false"
+                android:textSize="18sp" />
+            <CheckBox
+                android:id="@+id/cbx_partial5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cbx_partial4"
+                android:enabled="false"
+                android:text="Parcial 5"
+                android:textSize="18sp" />
+            <CheckBox
+                android:id="@+id/cbx_partial6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cbx_partial5"
+                android:text="Parcial 6"
+                android:enabled="false"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

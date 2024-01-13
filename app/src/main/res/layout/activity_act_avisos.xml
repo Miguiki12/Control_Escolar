@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".act_Avisos">
+
+    <RelativeLayout
+        android:id="@+id/rtv_de_Avisos"
+        android:layout_width="match_parent"
+        android:layout_height="35dp">
+
+        <TextView
+            android:id="@+id/txt_de_Avisos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:textSize="18dp"
+            android:text="De"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/txt_Corre_Avisos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:text="migvaz5@gmail.com"
+            android:layout_marginStart="30dp"
+            android:layout_toEndOf="@+id/txt_de_Avisos"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rtv_para_Avisos"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"
+        android:layout_below="@+id/rtv_de_Avisos">
+
+        <Button
+            android:id="@+id/btn_para_Avisos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:textSize="12dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginBottom="731dp"
+            android:text="Para" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:text="Todos"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rtv_asunto_Aviso"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/rtv_para_Avisos">
+        <EditText
+            android:id="@+id/ed_asinto_Avisos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPersonName"
+            android:layout_marginStart="5dp"
+            android:backgroundTint="@android:color/transparent"
+            android:hint="Asunto"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rtv_asunto_Aviso">
+        <EditText
+            android:id="@+id/ed_redactar_Avisos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:backgroundTint="@android:color/transparent"
+            android:hint="Redactar un correo"/>
+
+        <ListView
+            android:id="@+id/list_addressee2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ed_redactar_Avisos"
+            android:layout_marginTop="11dp"
+            android:visibility="invisible"
+            android:choiceMode="multipleChoice"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="1dp" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

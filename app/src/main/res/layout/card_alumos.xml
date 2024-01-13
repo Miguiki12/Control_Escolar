@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_marginRight="15dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginTop="5dp"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="2dp"
+    app:contentPadding="0dp">
+
+    <RelativeLayout
+        android:id="@+id/relativelayaout_alumnos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/card_border">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image_alumno"
+            android:layout_width="65dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"/>
+
+
+        <ImageView
+            android:id="@+id/image_Opciones_Alumno"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignBottom="@id/image_alumno"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_option_horizontal" />
+
+        <TextView
+            android:id="@+id/lbl_Nombre_Alumno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/image_alumno"
+            android:text="ALUMNO"
+            android:layout_marginTop="2dp"
+            android:textColor="#1A8AF9"
+            android:textSize="14dp"
+            />
+
+        <TextView
+            android:id="@+id/lbl_Detalles_Alumno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lbl_Nombre_Alumno"
+            android:layout_toEndOf="@id/image_alumno"
+            android:textSize="12dp"
+            android:text="..." />
+
+        <TextView
+            android:id="@+id/lbl_Folio_Alumno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_below="@+id/lbl_Detalles_Alumno"
+            android:layout_toEndOf="@id/image_alumno"
+            android:text=""
+            />
+        <TextView
+            android:id="@+id/lbl_status_Alumno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lbl_Detalles_Alumno"
+            android:layout_toEndOf="@id/image_alumno"
+            android:textSize="12dp"
+            android:text="..." />
+       <!-- <TextView
+            android:id="@+id/lbl_tipoEscuela"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lbl_DetallesEscuela"
+            android:layout_toEndOf="@id/image_alumno"
+            android:text=""
+            />-->
+
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

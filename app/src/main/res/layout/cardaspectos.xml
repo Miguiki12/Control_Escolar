@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardaspectos"
+    android:layout_margin="12dp"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="10dp"
+    android:layout_gravity="center"
+    app:cardElevation="6dp"
+    app:contentPadding="4dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imagen_OpcionesAspectos"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/imagen_Aspectos"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+            android:src="@drawable/more" />
+
+        <TextView
+            android:id="@+id/lbl_NombreAspecto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/black"
+            android:elevation="15dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Aspecto"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imagen_Aspectos"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_below="@+id/lbl_NombreAspecto"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/tar" />
+
+        <TextView
+            android:id="@+id/lbl_PorcientoAspecto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imagen_Aspectos"
+
+            android:layout_marginEnd="0dp"
+            android:text="..."
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/lbl_porcentaje"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imagen_Aspectos"
+            android:layout_toRightOf="@+id/lbl_PorcientoAspecto"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:text="%" />
+
+        <TextView
+            android:id="@+id/lbl_idAspecto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lbl_PorcientoAspecto"
+            android:text="id"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

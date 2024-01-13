@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/txt_title_partial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_gravity="center"
+        android:background="#1A8AF9"
+        android:elevation="15dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Indique inicio y fin del parcial"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+
+
+    <Spinner
+        android:id="@+id/spinner_Partial"
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:layout_margin="15dp"
+
+        android:spinnerMode="dialog"
+        android:prompt="@string/partials" />
+    <!--android:entries="@array/partials"-->
+    <!--<Spinner
+        android:id="@+id/spinner_matters_Partial"
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:layout_margin="15dp"
+        android:prompt="@string/matters"
+
+        android:spinnerMode="dialog" />-->
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_begin_partial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/txt_begin_partial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="INICIA"
+                android:textSize="18dp"/>
+
+            <DatePicker
+                android:id="@+id/dpicker_Begin_Partial"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_below="@+id/txt_begin_partial"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_end_partial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/txt_end_partial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TERMINA"
+            android:textSize="18dp"/>
+
+        <DatePicker
+            android:id="@+id/dPicker_End_Partial"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_below="@+id/txt_end_partial"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner" />
+    </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <Button
+        android:id="@+id/btn_Create_Partial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:textSize="20dp"
+        android:text="Aceptar"/>
+
+
+</LinearLayout>

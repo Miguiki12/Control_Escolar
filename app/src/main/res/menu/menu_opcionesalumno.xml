@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/cambiar_foto"
+
+        android:title="Foto"
+        />
+
+    />
+    <item
+        android:id="@+id/situacion"
+        android:title="Situación"
+
+        />
+    <item
+        android:id="@+id/domiciliar"
+
+        android:title="Domicilio"
+
+        />
+
+
+    <item
+        android:id="@+id/datos_personales"
+        android:title="Datos Personales"
+
+        />
+    <item
+        android:id="@+id/datos_tutor_1"
+        android:title="Datos Tutor 1"
+
+        />
+    <item
+        android:id="@+id/datos_tutor_2"
+        android:title="Datos Tutor 2"
+
+        />
+    <item
+        android:id="@+id/eliminar_alumno"
+        android:title="Eliminar"
+
+        />
+
+</menu>

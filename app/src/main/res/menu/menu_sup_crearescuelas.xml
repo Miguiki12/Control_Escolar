@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/btnm_crearescuela"
+        android:icon="@drawable/ic_add"
+        android:title="Crear"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/btnm_help_school"
+        android:icon="@drawable/ic_help"
+        android:title="Ayuda"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/menu_otros"
+        android:title="Ver terminadas"
+        />
+    <item
+        android:id="@+id/btnm_importar_bd"
+        android:title="Importar BD"
+        />
+
+    />
+</menu>

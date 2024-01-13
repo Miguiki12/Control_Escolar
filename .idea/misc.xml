@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2185" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/drawable/alumnos.xml" value="0.2185" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/drawable/asistencia.xml" value="0.2185" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/drawable/calificar.xml" value="0.2185" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/drawable/cancelar_asistencia.xml" value="0.1975" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/drawable/crear_asistencia.xml" value="0.3675" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/drawable/guardar_asistencia.xml" value="0.3675" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/drawable/ic_baseline_auto_stories_24.xml" value="0.2185" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/drawable/ic_baseline_cancel_presentation_24.xml" value="0.3675" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/drawable/ic_baseline_emoji_people_24.xml" value="0.2185" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/drawable/ic_baseline_groups_24.xml" value="0.2185" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/drawable/ic_baseline_manage_search_24.xml" value="0.3675" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/drawable/ic_baseline_warning_24.xml" value="0.3675" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/drawable/ic_delete.xml" value="0.3675" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2185" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/drawable/ic_menu.xml" value="0.3675" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/drawable/ic_qualify.xml" value="0.3675" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/drawable/ic_save.xml" value="0.3675" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/drawable/ic_terminar.xml" value="0.3675" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/drawable/icedit.xml" value="0.199" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/drawable/menuescuela.xml" value="0.3675" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/activity_act_activdad.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/activity_act_alumno.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/activity_act_asistencia.xml" value="0.33" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/activity_act_aspectos.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/activity_act_calificar.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/activity_act_importar_alumnos.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/activity_act_materias.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/activity_act_principal.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/activity_act_registro_maestro.xml" value="0.25815217391304346" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/activity_act_seleccionar_escuela.xml" value="0.295" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/activity_main2.xml" value="0.22" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/app_bar_main.xml" value="0.1757852077001013" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/cardactividad.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/cardaspectos.xml" value="0.5" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/cardescuelas.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/cardmaterias.xml" value="0.5" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/fragment_actividad.xml" value="0.33" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/fragment_asistencia.xml" value="0.33" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/fragment_calificar.xml" value="0.33" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/listaactividad.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/listaalumnos.xml" value="0.365625" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/listaasistencia.xml" value="0.365625" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/listacalificar.xml" value="0.365625" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/nav_header_name.xml" value="0.33" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/view_buscar_por_materia.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/view_dias.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/view_importar_nombre.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/viewcalificartareas.xml" value="0.365625" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/viewcardmaterias.xml" value="0.365625" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/viewdatosactividad.xml" value="0.365625" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/viewdatosalumno.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/viewdatosaspectos.xml" value="0.365625" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/viewdatosescuela.xml" value="0.3232876712328767" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/viewdatospersonalesalumno.xml" value="0.365625" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/viewdatostutor.xml" value="0.365625" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/viewsituacionalumno.xml" value="0.365625" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/layout/viewupdatealumno.xml" value="0.365625" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/menu/activity_main_drawer.xml" value="0.3" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/menu/botto_menu.xml" value="0.3625" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/menu/menu.xml" value="0.3" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/menu/menu_actividad.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/menu/menu_aspectos.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/menu/menu_escuelas.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/menu/menu_importar.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/menu/menu_inf_alumnos.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/menu/menu_inf_asistencia.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/menu/menu_lista_importar.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/menu/menu_materias.xml" value="0.20750551876379691" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/menu/menu_opcionesalumno.xml" value="0.365625" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/menu/menu_sup_actividad.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/menu/menu_sup_asistencia.xml" value="0.365625" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/menu/menu_sup_aspectos.xml" value="0.365625" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/menu/menu_sup_crearescuelas.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/MIGUIKI/AndroidStudioProjects/Control_Escolar/app/src/main/res/menu/menu_tocuh_asistencia.xml" value="0.36666666666666664" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.22060709705002138" />
+      </ProjectState>
+    </option>
+  </component>
+</project>

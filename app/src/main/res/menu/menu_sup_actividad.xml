@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/btnm_buscar_materia"
+        android:icon="@drawable/ic_search_white"
+        android:title="Crear"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/btnm_crearactividad"
+        android:icon="@drawable/ic_add"
+        android:title="Crear"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/btnm_help_activity"
+        android:icon="@drawable/ic_help"
+        android:title="Ayuda"
+        app:showAsAction="always"/>
+
+
+
+    <item
+        android:id="@+id/btnm_solo_terminadas"
+        android:title="Mostrar Terminadas"/>
+    <item
+        android:id="@+id/btnm_solo_incompletas"
+        android:title="Mostrar no Terminadas"/>
+    <item
+        android:id="@+id/btnm_Todas"
+        android:title="Mostrar Todas"/>
+
+    <item
+        android:id="@+id/btnm_Fecha"
+        android:title="Por Fecha"/>
+
+    <item
+        android:id="@+id/btnm_Actividad_Especial"
+        android:title="Act. de Recuperación"/>
+
+    <item
+        android:id="@+id/btnm_Actividad_Excel"
+        android:title="Importar a excel"/>
+
+</menu>

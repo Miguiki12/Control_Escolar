@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:elevation="0dp"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/bar_help_school"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#FFA000"
+                android:elevation="15dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="¿Que necesita saber?"
+                android:textColor="@color/white"
+                android:textSize="19sp"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_add"/>
+
+            <TextView
+                android:id="@+id/txt_new_school_help"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bar_help_school"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:text="+ - Nueva escuela:"/>
+
+            <LinearLayout
+                android:id="@+id/linear_detail_new_school"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_new_school_help">
+                <TextView
+                    android:id="@+id/txt_details_new_school_help"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="16dp"
+                    android:layout_below="@id/txt_new_school_help"
+                    android:text="  Presione el icono + en la parte superior derecha de la ventana.
+Llene los datos que se muestran y presione ok.\n
+Recuerde que al crear la escuela no se podra cambiar el npmbre ni tipo de la misma.\n
+*** Tipos de Escuela: Primaria  la forma de calificar es igual para todas las materias"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txt_terminate_school_help"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linear_detail_new_school"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="#ACD5C5"
+                android:text=" - Terminar Escuela:"/>
+
+            <TextView
+                android:id="@+id/txt_details_termiante_school_help"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_terminate_school_help"
+                android:textSize="16dp"
+                android:text="  Seleccione el ícono de menú en la escuela que desea para mostrar la opción 'Terminar'.
+Este proceso oculta la escuela para reducir la cantidad de escuelas mostradas en pantalla."/>
+
+            <TextView
+                android:id="@+id/txt_delete_school_help"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#EA0E20"
+                android:layout_below="@+id/txt_details_termiante_school_help"
+                android:textSize="20dp"
+                android:text="- Eliminar Escuela:"/>
+
+            <TextView
+                android:id="@+id/txt_details_delete_school_help"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_delete_school_help"
+                android:textSize="16dp"
+                android:text="  Seleccione el ícono de menú en la escuela que desea para mostrar la opción 'Eliminar', presione ok si en realidad hara este proceso.
+Este proceso elimina la escuela por completo."/>
+
+            <TextView
+                android:id="@+id/txt_update_school_help"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#0E2BEA"
+                android:layout_below="@+id/txt_details_delete_school_help"
+                android:textSize="20dp"
+                android:text="- Modificar Escuela:"/>
+
+            <TextView
+                android:id="@+id/txt_details_update_school_help"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_update_school_help"
+                android:textSize="16dp"
+                android:text="  Seleccione el ícono de menú en la escuela que desea para mostrar la opción 'Modificar', se mostrararn los datos con los que se registro la escuela, cambie los campos que necesite con la nueva informacion, presione ok para terminar.
+                 Este proceso actualizara los datos de la escuela seleccionada."/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

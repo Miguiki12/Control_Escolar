@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/finish_partial"
+        android:title="Finalizar Materia"
+        android:icon="@drawable/ic_finish_partial"
+        />
+    <item
+        android:id="@+id/share_matter_partial"
+        android:title="Pdf"
+        android:icon="@drawable/ic_pdf"
+        />
+    <item
+        android:id="@+id/other"
+        android:title="Eliminar"
+        android:icon="@drawable/ic_delete"
+        />
+
+</menu>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:backgroundTint="#0BD5EF">
+
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_datospersonales"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp">
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+
+                <TextView
+                    android:id="@+id/txt_Importar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="#1A8AF9"
+                    android:elevation="15dp"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="¿Como pegar?"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/Racomodar"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_Importar">
+
+                    <RadioButton
+                        android:id="@+id/rdg_Primero_Nombre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="Primero Nombre" />
+
+                    <RadioButton
+                        android:id="@+id/rdg_Primero_Apellido"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Primero Apellido" />
+
+
+                </RadioGroup>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/edit_espacio_nombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/Racomodar">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txt_espacio_nombre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#FDFDFD"
+                        android:inputType="textPersonName"
+                        android:maxLength="1"
+                        android:hint="Espacio en nombre y apellido"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btn_Importar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/edit_espacio_nombre"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="10dp"
+                    android:text="Siguiente" />
+
+
+
+
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

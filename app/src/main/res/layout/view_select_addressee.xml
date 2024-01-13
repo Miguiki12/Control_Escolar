@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/rtv_list_addressee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/lbl_title_addressee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#1A8AF9"
+            android:elevation="15dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Seleccione destinatario"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            android:textStyle="bold"/>
+
+
+        <RelativeLayout
+            android:id="@+id/rtv_button_addressee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lbl_title_addressee">
+
+            <TextView
+                android:id="@+id/txt_listo_addressee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:textColor="#1A8AF9"
+                android:text="Listo"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+            
+            <CheckBox
+                android:id="@+id/cbx_all_addressee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text=""
+                android:checked="true"
+                android:textAlignment="textStart"
+                android:textDirection="firstStrongRtl" />
+      </RelativeLayout>
+
+        <ListView
+            android:id="@+id/list_addressee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rtv_button_addressee"
+            android:layout_marginTop="9dp"
+            android:choiceMode="multipleChoice"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="1dp" />
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

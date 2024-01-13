@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<group>
+    <item android:title="Alumnos">
+        <menu>
+    <item android:id="@+id/nav_item_alumnos"
+        android:icon="@drawable/ic_students"
+        android:title="Alumnos"/>
+
+    <item android:id="@+id/nav_item_asistencia"
+        android:icon="@drawable/ic_asistent"
+        android:title="Asistencia"/>
+
+    <item android:id="@+id/nav_item_insidencias"
+        android:icon="@drawable/ic_report_problem"
+        android:title="Incidencias"/>
+
+    <item android:id="@+id/nav_item_avisos"
+        android:icon="@drawable/ic_message"
+         android:title="Avisos"/>
+
+    <item android:id="@+id/nav_item_actividades"
+        android:icon="@drawable/ic_activity"
+          android:title="Actividades"/>
+
+    <item android:id="@+id/nav_item_parciales"
+        android:icon="@drawable/ic_parcial"
+          android:title="Parciales"/>
+
+        </menu>
+    </item>
+</group>
+
+    <item android:title="Escuela">
+
+        <menu>
+
+            <item android:id="@+id/nav_item_escuela"
+                android:icon="@drawable/ic_school"
+                android:title="Escuela"/>
+            <item android:id="@+id/nav_item_materias"
+                android:icon="@drawable/ic_matter"
+                android:title="Materias"/>
+
+            <item android:id="@+id/nav_item_encuadre"
+                android:icon="@drawable/ic_encuadre"
+                android:title="Como calificar"/>
+
+           <item android:id="@+id/nav_item_calendario"
+               android:icon="@drawable/ic_schedule"
+               android:title="Horario"/>
+
+
+            <item android:id="@+id/nav_item_imprimibles"
+                android:icon="@drawable/ic_printshop"
+                android:title="Imprimibles"/>
+
+
+            <item android:id="@+id/nav_item_configuracion"
+                android:icon="@drawable/ic_settings"
+                android:title="Configuración"/>
+
+
+        </menu>
+    </item>
+
+   <!-- <item android:title="Cuenta">
+
+        <menu>
+
+            <item android:id="@+id/nav_item_teacher"
+                android:icon="@drawable/ic_terminar"
+                android:title="Datos Maestro"/>
+
+            <item android:id="@+id/nav_item_cerrar_sesion"
+                android:icon="@drawable/ic_terminar"
+                android:title="Cerrar Sesión"/>
+
+        </menu>
+    </item>-->
+</menu>

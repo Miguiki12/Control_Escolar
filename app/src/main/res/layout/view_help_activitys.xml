@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_margin="5dp"
+        android:elevation="0dp"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/bar_help_activitys"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#FFA000"
+                android:elevation="15dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="¿Que necesita saber?"
+                android:textColor="@color/white"
+                android:textSize="19sp"
+                android:textStyle="bold"/>
+
+
+            <TextView
+                android:id="@+id/txt_details_new_school_help"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:layout_below="@id/bar_help_activitys"
+                android:text="1. Actividad con porcentaje 0: Esta actividad está destinada a todos los alumnos por igual y no se indica un valor porcentual. Se evaluará sumando la cantidad de actividades del mismo tipo con porcentaje 0. Por ejemplo, si las tareas tienen un valor total del 20% de la calificación y se asignaron 10 tareas con porcentaje 0, cada tarea tendrá un valor de 2 puntos sobre 100.** Para crear esta actividad solo deje el porcetnaje en valor 0 sin especificar alumnos y presione el boton Agregar.\n\n
+
+2. Actividades con porcentaje específico: Estas actividades también están destinadas a todos los alumnos por igual, pero se indica un valor en el porcentaje cuando deseamos que esa actividad sea especial en la evaluación del alumno. Por ejemplo, supongamos que se asignan 5 trabajos con un porcentaje total de 0 en el parcial, pero hay uno que se le asigna el 20% del valor de los trabajos, los cuales tienen un porcentaje del 30% de la calificación total. Entonces, el cálculo sería: (valor de los trabajos = 30% de 100%) - (20% del trabajo con un porcentaje del 30% del valor de los trabajos) = (80% de los trabajos con un valor de 0 del 30% del valor de los trabajos). Para crear este tipo de actividad indique el porcentaje de la misma sin especificar alumnos y presione el boton Agregar.\n\n
+
+3. Actividades destinadas a algunos alumnos específicos: Estas actividades, como un examen extraordinario o un trabajo especial para alumnos que necesiten regularización, especifican obligatoriamente un valor en el porcentaje. Para crar este tipo de actividad indique el porcentaje sobre 100 y forzosamente seleccione a que alumnos va dirigida."
+                />
+
+
+           <!-- <TextView
+                android:id="@+id/txt_create_activity_help"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_details_new_school_help"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="#ACD5C5"
+                android:text="Crear actividad"/>
+
+            <TextView
+                android:id="@+id/txt_details_termiante_school_help"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_create_activity_help"
+                android:textSize="16dp"
+                android:text="  Seleccione el ícono de menú en la escuela que desea para mostrar la opción 'Terminar'.
+Este proceso oculta la escuela para reducir la cantidad de escuelas mostradas en pantalla."/>
+
+            <TextView
+                android:id="@+id/txt_delete_school_help"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#EA0E20"
+                android:layout_below="@+id/txt_details_termiante_school_help"
+                android:textSize="20dp"
+                android:text="- Eliminar Escuela:"/>
+
+            <TextView
+                android:id="@+id/txt_details_delete_school_help"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_delete_school_help"
+                android:textSize="16dp"
+                android:text="  Seleccione el ícono de menú en la escuela que desea para mostrar la opción 'Eliminar', presione ok si en realidad hara este proceso.
+Este proceso elimina la escuela por completo."/>
+
+            <TextView
+                android:id="@+id/txt_update_school_help"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#0E2BEA"
+                android:layout_below="@+id/txt_details_delete_school_help"
+                android:textSize="20dp"
+                android:text="- Modificar Escuela:"/>
+
+            <TextView
+                android:id="@+id/txt_details_update_school_help"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_update_school_help"
+                android:textSize="16dp"
+                android:text="  Seleccione el ícono de menú en la escuela que desea para mostrar la opción 'Modificar', se mostrararn los datos con los que se registro la escuela, cambie los campos que necesite con la nueva informacion, presione ok para terminar.
+                 Este proceso actualizara los datos de la escuela seleccionada."/>-->
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
+</ScrollView>

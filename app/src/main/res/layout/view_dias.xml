@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/card_padecimientos"
+        android:layout_margin="10dp">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/barra_Dias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#1FB598"
+                android:elevation="15dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Indique los dias "
+                android:textColor="@color/white"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+
+
+            <CheckBox
+                android:id="@+id/cbx_Lunes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/barra_Dias"
+
+                android:text="Lunes"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/cbx_Martes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cbx_Lunes"
+                android:text="Martes"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/cbx_Miercoles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cbx_Martes"
+                android:text="Miércoles"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/cbx_Jueves"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cbx_Miercoles"
+                android:text="Jueves"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/cbx_Viernes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cbx_Jueves"
+                android:text="Viernes"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/cbx_Sabado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cbx_Viernes"
+                android:text="Sabado"
+                android:textSize="18sp" />
+
+
+
+
+
+
+
+
+
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

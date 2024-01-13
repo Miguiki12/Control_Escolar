@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_principal_asistencia"
+        android:icon="@drawable/ic_desempeno"
+        android:title="Desempeño" />
+
+    <item
+        android:id="@+id/nav_Crear_asistencia"
+        android:icon="@drawable/crear_asistencia"
+        android:title="Actividad" />
+
+    <item
+        android:id="@+id/nav_Guardar_Asistencia"
+        android:icon="@drawable/ic_save"
+        android:title="Guardar" />
+    <item
+        android:id="@+id/nav_Buscar_asistencia"
+        android:icon="@drawable/ic_search"
+        android:menuCategory="alternative"
+        android:title="Buscar" />
+    <item
+        android:id="@+id/nav_Todos_asistieron"
+        android:menuCategory="alternative"
+        android:icon="@drawable/todosasistieron"
+        android:title="Asistieron" />
+</menu>

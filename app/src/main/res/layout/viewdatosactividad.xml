@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/barra_Actividad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#FFA000"
+            android:elevation="15dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Nueva actividad"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/cbx_Materias_actividad"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/barra_Actividad" />
+            <!--android:entries="@array/Materias" />-->
+
+        <Spinner
+            android:id="@+id/cbx_Aspectos_actividad"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/cbx_Materias_actividad" />
+            <!--android:entries="@array/Aspectos" />-->
+
+
+        <EditText
+            android:id="@+id/edit_Nombre_Actividad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cbx_Aspectos_actividad"
+            android:layout_marginTop="20dp"
+            android:hint="Nombre de la Actividad"
+            android:inputType="textCapSentences" />
+
+       <!-- <EditText
+            android:id="@+id/edit_Porcentaje_Actividad"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_Nombre_Actividad"
+            android:layout_marginTop="20dp"
+            android:hint="0"
+            android:inputType="number"
+            android:maxLength="3" />-->
+        <LinearLayout
+            android:id="@+id/linear_porcentaje_Actividad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edit_Nombre_Actividad">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txt_Porcentaje_Actividad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="12dp"
+            android:layout_below="@+id/edit_Nombre_Actividad">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_Porcentaje_Actividad"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:background="#FDFDFD"
+                android:inputType="number"
+                android:maxLength="3"
+                android:text="0"
+                android:hint="%" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/txt_detalle_porcentaje_Actividad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edit_Nombre_Actividad"
+            android:textSize="20dp"
+            android:text="% de " />
+            <TextView
+                android:id="@+id/txt_especificar_porcentaje_Actividad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_below="@id/edit_Nombre_Actividad"
+                android:textSize="20dp"
+                android:text="¿?"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/lbl_fecha_actividad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_porcentaje_Actividad"
+            android:text="Fecha a entregar"
+            android:textColor="#FFA000"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <DatePicker
+            android:id="@+id/dtp_Fecha_Actividad"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_below="@+id/lbl_fecha_actividad"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner" />
+        <Switch
+            android:id="@+id/switch_especificar_alumnos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cbx_Avisar"
+            android:visibility="invisible"
+            android:text="Especificar Alumnos"/>
+
+        <Button
+            android:id="@+id/btn_AgregarActividad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cbx_Avisar"
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="#FFA000"
+            android:text="Agregar" />
+
+        <CheckBox
+            android:id="@+id/cbx_Avisar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dtp_Fecha_Actividad"
+            android:text="Infromar Actividad" />
+
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

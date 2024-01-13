@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/updateEscuela"
+        android:title="Modificar"
+        android:icon="@drawable/icedit"
+        />
+    <item
+        android:id="@+id/delete"
+        android:title="Eliminar"
+        android:icon="@drawable/ic_delete"
+        />
+    <item
+        android:id="@+id/exportar"
+        android:title="Exportar Datos"
+        android:icon="@drawable/ic_export_school"
+        />
+    <item
+        android:id="@+id/importar"
+        android:title="Importar datos"
+        android:icon="@drawable/ic_import_data"
+        />
+
+</menu>

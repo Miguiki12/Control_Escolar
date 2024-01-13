@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <item
+        android:id="@+id/nav_Importar_Lista"
+        android:title="Importar"
+        android:icon="@drawable/ic_importar_lista"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/btnm_help_import"
+        android:icon="@drawable/ic_help"
+        android:title="Ayuda"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/nav_Nombre_Completo"
+        android:title=" Pegar Nombre Completo"
+
+        />
+   <!-- <item
+        android:id="@+id/nav_Nombre"
+        android:title="Solo Nombre"
+
+        />
+    <item
+        android:id="@+id/nav_Apellidop"
+        android:title="Apellido Paterno"
+
+        />
+    <item
+        android:id="@+id/nav_Apellidom"
+        android:title="Apellido Materno"
+        />-->
+    <item
+        android:id="@+id/nav_Curp"
+        android:title="Pegar Curp"
+        />
+    <item
+        android:id="@+id/nav_Telefono"
+        android:title="Pegar Telefono"
+        />
+    <item
+        android:id="@+id/nav_Correo"
+        android:title="Pegar Correo"
+        />
+
+</menu>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+   <!-- <androidx.cardview.widget.CardView
+        android:id="@+id/card_stake"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/barra_Calificar_actividad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#FFA000"
+                android:elevation="15dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@id/linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/barra_Calificar_actividad"
+                android:layout_marginTop="10dp">
+
+                <EditText
+                    android:id="@+id/edt_Calificar_actividad"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_below="@+id/barra_Calificar_actividad"
+                    android:hint="Calificacion"
+                    android:layout_marginTop="10dp"
+                    android:inputType="number"
+                    android:maxLength="3" />
+
+                <Button
+                    android:id="@+id/btn_Calificar_Actividad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:backgroundTint="#FFA000"
+                    android:text="Terminar" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_siguiente_calificar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linear"
+                android:layout_alignParentEnd="true"
+                android:text="ok, siguiente"
+                />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>-->
+
+    <androidx.cardview.widget.CardView
+       android:id="@+id/card_stake"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_margin="12dp"
+       android:layout_marginStart="12dp"
+       android:layout_marginEnd="12dp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent">
+
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:padding="16dp">
+
+           <TextView
+               android:id="@+id/barra_Calificar_actividad"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center"
+               android:background="#FFA000"
+               android:elevation="15dp"
+               android:gravity="center"
+               android:padding="10dp"
+               android:text=""
+               android:textColor="@color/white"
+               android:textSize="19sp"
+               android:textStyle="bold" />
+
+
+
+               <EditText
+                   android:id="@+id/edt_Calificar_actividad"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+
+                   android:layout_below="@+id/barra_Calificar_actividad"
+                   android:hint="Calificacion"
+                   android:layout_marginTop="10dp"
+                   android:inputType="number"
+                   android:maxLength="3" />
+
+               <Button
+                   android:id="@+id/btn_Calificar_Actividad"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_below="@+id/txt_valor_aspecto_calificar"
+                   android:layout_alignParentStart="true"
+                   android:backgroundTint="#FFA000"
+                   android:text="Terminar" />
+
+           <Button
+               android:id="@+id/btn_siguiente_calificar"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@+id/txt_valor_aspecto_calificar"
+               android:layout_alignParentEnd="true"
+               android:text="ok, siguiente"
+               />
+
+
+           <TextView
+               android:id="@+id/txt_sobre_cien"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@+id/barra_Calificar_actividad"
+               android:layout_marginStart="0dp"
+               android:layout_marginTop="9dp"
+               android:layout_toEndOf="@+id/edt_Calificar_actividad"
+               android:text="/100%"
+               android:textSize="25dp" />
+
+           <TextView
+               android:id="@+id/txt_valor_aspecto_calificar"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@+id/edt_Calificar_actividad"
+               android:layout_marginStart="0dp"
+               android:layout_marginTop="9dp"
+               android:textColor="#1A8AF9"
+               android:textStyle="bold"
+               android:text="ejemplo 6.5  =  a  65 no se admite punto decimal"
+               android:textSize="13dp" />
+
+       </RelativeLayout>
+   </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

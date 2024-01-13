@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_margin="12dp"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="20dp"
+    android:layout_gravity="center"
+    app:cardElevation="6dp"
+    app:contentPadding="4dp">
+
+    <RelativeLayout
+        android:id="@+id/relativelayaout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+
+        <ImageView
+            android:id="@+id/image_Escuela"
+            android:layout_width="140dp"
+            android:layout_height="120dp"
+            android:layout_alignParentStart="true"
+            />
+
+
+        <ImageView
+            android:id="@+id/image_OpcionesEscuela"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignBottom="@id/image_Escuela"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+            android:src="@drawable/more" />
+
+        <TextView
+            android:id="@+id/lbl_NombreEscuela"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/image_Escuela"
+            android:text="ESCUELA"
+            android:textColor="#1A8AF9"
+            android:textSize="19dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/lbl_DetallesEscuela"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lbl_NombreEscuela"
+            android:layout_toEndOf="@id/image_Escuela"
+            android:text="..." />
+
+        <TextView
+            android:id="@+id/lbl_claveEscuela"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_below="@+id/lbl_DetallesEscuela"
+            android:layout_toEndOf="@id/image_Escuela"
+            android:text=""
+             />
+        <TextView
+            android:id="@+id/lbl_tipoEscuela"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lbl_DetallesEscuela"
+            android:layout_toEndOf="@id/image_Escuela"
+            android:text=""
+            />
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
