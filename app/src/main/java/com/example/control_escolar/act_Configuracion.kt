@@ -28,12 +28,17 @@ class act_Configuracion : AppCompatActivity() {
         this.supportActionBar?.title = "Configuración"
         this.supportActionBar?.subtitle = Nombre_Escuela.getAlias()
         setting = SettingsBD(this)
+
+        setting.deletetable()
+        setting.onCreate(setting.writableDatabase)
         //setting.addColumnN_teacher()
         try {getSettings()}catch (Ex:Exception){}
         txt_example_pass.setOnClickListener { open_example_pass() }
         btn_select_estadistic_1.setOnClickListener {showDatePickerDialog(1,txt_select_estadistic_1.text.toString())}
         btn_select_estadistic_2.setOnClickListener {showDatePickerDialog(2,txt_select_estadistic_2.text.toString())}
         btn_select_estadistic_3.setOnClickListener {showDatePickerDialog(3,txt_select_estadistic_3.text.toString())}
+        btn_select_estadistic_4.setOnClickListener {showDatePickerDialog(4,txt_select_estadistic_4.text.toString())}
+        btn_select_estadistic_5.setOnClickListener {showDatePickerDialog(5,txt_select_estadistic_5.text.toString())}
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -65,6 +70,8 @@ class act_Configuracion : AppCompatActivity() {
             txt_select_estadistic_1.text = config.getString(12)
             txt_select_estadistic_2.text = config.getString(13)
             txt_select_estadistic_3.text = config.getString(14)
+            txt_select_estadistic_4.text = config.getString(15)
+            txt_select_estadistic_5.text = config.getString(16)
         }
         config.close()
        return config.count
@@ -93,6 +100,8 @@ class act_Configuracion : AppCompatActivity() {
             setting.sEstadistica1 = txt_select_estadistic_1.text.toString()
             setting.sEstadistica2 = txt_select_estadistic_2.text.toString()
             setting.sEstadistica3 = txt_select_estadistic_3.text.toString()
+            setting.sEstadistica4 = txt_select_estadistic_4.text.toString()
+            setting.sEstadistica5 = txt_select_estadistic_5.text.toString()
             setting.newSettings()
             Toast.makeText(this,setting.error, Toast.LENGTH_SHORT).show()
         }
@@ -127,6 +136,8 @@ class act_Configuracion : AppCompatActivity() {
                     1 -> txt_select_estadistic_1.text = Formats.convertdate(selectedDate)
                     2 -> txt_select_estadistic_2.text = Formats.convertdate(selectedDate)
                     3 -> txt_select_estadistic_3.text = Formats.convertdate(selectedDate)
+                    4 -> txt_select_estadistic_4.text = Formats.convertdate(selectedDate)
+                    5 -> txt_select_estadistic_5.text = Formats.convertdate(selectedDate)
                 }
             },
             year,

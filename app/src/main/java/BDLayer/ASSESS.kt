@@ -131,8 +131,6 @@ context, Nombre_Escuela.getName(), null, 1) {
     }
 
 
-
-
     fun getDatesByParcial(parcial:Int){
         val sQuery = "Select distinct (Periodo) as Periodo, f_inicio, f_fin " +
                 "from Parciales " +
@@ -142,6 +140,7 @@ context, Nombre_Escuela.getName(), null, 1) {
             df_inicio = cursor.getString(1)
             df_fin = cursor.getString(2)
         }
+        
         cursor.close()
     }
 
@@ -200,7 +199,7 @@ context, Nombre_Escuela.getName(), null, 1) {
 
     public fun getCalifications(partial:Int, c_matter:Int, list:ArrayList<DatosCalificar>) {
         val sQuery =
-            "Select Parciales.C_parcial, Alumno.Folio, Calificacion, Nombre, Observaciones, foto, sexo, c_calificacion " +
+            "Select Parciales.C_parcial, Alumno.Folio, Calificacion, Nombre, Observaciones, foto, sexo, c_calificacion, f_baja, f_registro " +
                     "from Calificacionestemp, Alumno, Parciales " +
                     "where Parciales.Periodo = $partial and Parciales.C_materia = $c_matter and Parciales.c_Parcial = Calificacionestemp.C_parcial and Calificacionestemp.Folio = Alumno.Folio"
 
@@ -209,7 +208,7 @@ context, Nombre_Escuela.getName(), null, 1) {
             do {                                                                 //PictureLoader.loadPicture(context, cursor.getBlob(5))
                 list.add(
                     DatosCalificar(cursor.getString(3), cursor.getString(4), R.drawable.alumno, cursor.getString(2),
-                        cursor.getString(6).toInt(),cursor.getString(1),cursor.getString(0),"", cursor.getInt(7)))
+                        cursor.getString(6).toInt(),cursor.getString(1),cursor.getString(0),"", cursor.getInt(7), cursor.getString(8), cursor.getString(9)))
             } while (cursor.moveToNext())
             //loadPicture(cursor.getBlob(5))
             cursor.close()
@@ -591,7 +590,7 @@ context, Nombre_Escuela.getName(), null, 1) {
     }
 
     fun getAllActivitysDelivered():MutableList<MutableMap<String,Any>>{
-        val sQuery = "SELECT Count(Tarea.C_tarea) AS Total_actividad, folio, Tipo_Actividad.Nombre, Materia.N_materia " +
+        val sQuery = "SELECT Count(Tarea.C_tarea) AS Total_actividad, folio, Tipo_Actividad.Nombre, Materia.N_materia, sum(Tarea.Calificacion) " +
                 "FROM Tarea, Tareas, Tipo_Actividad, Materia " +
                 "WHERE(((Tareas.F_entrega)Between '${df_inicio}' and '$df_fin')) " +
                 "and Tareas.tipo = Tipo_Actividad.C_actividad and Tareas.C_materia = Materia.C_materia and Tareas.C_actividades = Tarea.C_tarea and encuenta = 0 and Tarea.Calificacion > 0 "+
@@ -607,6 +606,7 @@ context, Nombre_Escuela.getName(), null, 1) {
                     newData1["folio"] = cursor.getString(1)
                     newData1["activity"] = cursor.getString(2)
                     newData1["matter"] = cursor.getString(3)
+                    newData1["sumcalification"] = cursor.getString(4)
                     activitys.add(newData1)
                 } while (cursor.moveToNext())
             }

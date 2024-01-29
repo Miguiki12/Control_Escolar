@@ -136,152 +136,187 @@ class Curp {
 
 
 
-    public fun validar_curp(curp:String):Boolean {
-        var valida = true
+    public fun validar_curp(curp:String) {
+        if (validarCurp(curp)){
+             if (getSex2(curp)) Sexo = true
+             if (!getSex2(curp)) Sexo = false
+
+              edad = getAges(curp)
+              entidad_federativa = getEntidadFederativa(curp)
+              FNacimiento = getBirthday(curp)
+
+        }
+
+    }
+
+
+    fun validarCurp(curp: String): Boolean {
+        // Verificar que la longitud de la CURP sea la correcta
+        if (curp.length != 18) {
+            return false
+        }
+
+
+        // Verificar que los primeros 4 caracteres sean letras
+        if (!curp.substring(0, 4).matches(Regex("[A-Z]{4}"))) {
+            return false
+        }
+
+        // Verificar que los siguientes 6 caracteres sean dígitos
+        if (!curp.substring(4, 10).matches(Regex("\\d{6}"))) {
+
+
+            return false
+        }
+
+        // Verificar que el siguiente carácter sea una letra
+
+
+        if (!curp[10].isLetter()) {
+            return false
+        }
+
+        // Verificar que los siguientes 8 caracteres sean dígitos o letras
+        if (!curp.substring(11, 18).matches(Regex("[0-9A-Z]{7}"))) {
+            return false
+        }
+
+        // Si pasa todas las validaciones, la CURP es válida
+        return true
+    }
+
+    /**
+     * Obtiene la fecha de nacimiento a partir de una CURP válida.
+     * @param curp La CURP válida.
+     * @return La fecha de nacimiento en formato "yyyy-MM-dd" o una cadena vacía si la CURP no es válida.
+     */
+    fun getBirthday(curp: String): String {
+        //if (validarCurp(curp)) {
+        var fechaNacimiento = ""
         try {
-        if (curp.length > 0)
-        {
 
-        val sexo = curp.substring(10,11)
-            val estado = curp.substring(11,13)
-            var fecha_año = 0
-            var dateFormat = SimpleDateFormat("yy")
-            var DateTime = dateFormat.format(Date())
-            if (isNumeric(curp.substring(4,6)))
-            {
-                fecha_año = DateTime.toInt()
-                año = (curp.substring(4,6)).toInt()
+            val año = curp.substring(4, 6).toInt()
+            val mes = curp.substring(6, 8).toInt()
+            val dia = curp.substring(8, 10).toInt()
 
-                if (año == DateTime.toInt()){
-                    año = 0
-                }
-                else
-                {
-                    edad = DateTime.toInt() - año;
+            // Ajustar el año según el siglo (1900 o 2000)
+            val añoCompleto = if (año >= 0 && año <= 21) 2000 + año else 1900 + año
 
-                }
+            // Crear la fecha de nacimiento
+            fechaNacimiento = "$añoCompleto-$mes-$dia"
+
+            // Verificar si la fecha es válida
+            if (esFechaValida(fechaNacimiento)) {
+                return fechaNacimiento
             }
-            else
-            {
-                año = 0;
-            }
-
-            if (isNumeric(curp.substring(8,10)))
-            {
-                dia = curp.substring(8,10).toInt();
-                if (dia > 31) dia = 0;
-            }
-            else
-            {
-                dia = 0;
-            }
-
-            if (isNumeric(curp.substring(6,8)))
-            {
-
-                mes = curp.substring(6,8).toInt()
-                if (mes > 12) mes = 0
-                else
-                {
-                     dateFormat = SimpleDateFormat("MM")
-                     DateTime = dateFormat.format(Date())
-
-                    if (DateTime.toInt() < mes) edad = edad - 1
-                }
-            }
-            else
-            {
-                mes = 0
-            }
-
-            if (dia == 0 || mes == 0 || año == 0){
-                error = "Curp no valida en la fecha de nacimiento"
-                valida = false
-            }
-            else{
-                var dateFormat = SimpleDateFormat("yyyy")
-                var DateTime = dateFormat.format(Date())
-                if (año > fecha_año){
-                    fecha_año =  1900 + año
-                    edad = DateTime.toInt() - fecha_año
-                }
-                else{
-                    fecha_año = 2000 + año
-                }
-                FNacimiento = fecha_año.toString() + "-" + mes.toString() + "-" + dia.toString()
-
-            }
-
-            if (sexo != "H" && sexo != "M"){
-                error = "Curp no valida en la letra H o M del sexo"
-                valida = false
-            }
-
-            Sexo = sexo == "H"
-            if (estados_curp(estado) == "NO"){
-                error = "Error en la clave Renapo (Entidad federativa) de la curp que esta escribiendo"
-                valida = false
-            }
-            else{
-                entidad_federativa = estados_curp(estado)
-            }
-
-            return valida
-
-        }
         }catch (Ex:Exception){
-            error = Ex.message.toString()
-            valida = false
+            fechaNacimiento = "No asignada"
         }
-        return valida
+        //}
+
+        return fechaNacimiento
     }
 
+    /**
+     * Obtiene los años cumplidos a partir de una CURP válida.
+     * @param curp La CURP válida.
+     * @return Los años cumplidos o -1 si la CURP no es válida.
+     */
+    fun getAges(curp: String): Int {
+        //if (validarCurp(curp)) {
+        var añosCumplidos = 0
+        try{
 
-    fun calcularEdad(fechaNacimiento: String): Int {
-        val formatoFecha = SimpleDateFormat("yyyy-MM-dd")
-        val fechaNac = formatoFecha.parse(fechaNacimiento)
+            val añoNacimiento = curp.substring(4, 6).toInt()
+            val mesNacimiento = curp.substring(6, 8).toInt()
+            val diaNacimiento = curp.substring(8, 10).toInt()
 
-        val calHoy = Calendar.getInstance()
-        val calNac = Calendar.getInstance()
-        calNac.time = fechaNac
+            // Ajustar el año según el siglo (1900 o 2000)
+            val añoCompleto = if (añoNacimiento >= 0 && añoNacimiento <= 21) 2000 + añoNacimiento else 1900 + añoNacimiento
 
-        var edad = calHoy.get(Calendar.YEAR) - calNac.get(Calendar.YEAR)
+            val fechaNacimiento = Calendar.getInstance()
+            fechaNacimiento.set(añoCompleto, mesNacimiento - 1, diaNacimiento) // Meses en Calendar van de 0 a 11
 
-        // Verificar si el mes de cumpleaños ya pasó en el año actual
-        if (calHoy.get(Calendar.MONTH) < calNac.get(Calendar.MONTH)) {
-            edad--
-        } else if (calHoy.get(Calendar.MONTH) == calNac.get(Calendar.MONTH)) {
-            // Si el mes es el mismo, verificar si el día de cumpleaños ya pasó
-            if (calHoy.get(Calendar.DAY_OF_MONTH) < calNac.get(Calendar.DAY_OF_MONTH)) {
-                edad--
+            // Obtener la fecha actual
+            val fechaActual = Calendar.getInstance()
+
+            // Calcular la diferencia de años
+            añosCumplidos = fechaActual.get(Calendar.YEAR) - fechaNacimiento.get(Calendar.YEAR)
+
+            // Ajustar si aún no ha cumplido años en el año actual
+            if (fechaActual.get(Calendar.DAY_OF_YEAR) < fechaNacimiento.get(Calendar.DAY_OF_YEAR)) {
+                añosCumplidos--
             }
+
+        }catch (Ex:Exception){
+            añosCumplidos = 0
         }
 
-        return edad
+            return añosCumplidos
+        //}
+
+        return -1
     }
 
-    fun edadEstadistica(curp: String, dia: Byte, mes: Byte):Int {
-        if (validar_curp(curp)){
-        val cal = Calendar.getInstance()
-        val año1 = "20" + curp.substring(4, 6)
-        val año2 = cal.get(Calendar.YEAR).toString()
-        var edad = año2.toInt() - año1.toInt()
-        val mes1 = curp.substring(6, 8)
-        val mes2 = mes.toInt()
-        edad = if (mes2 > mes1.toInt()) edad else if (mes2 == mes1.toInt()) {
-            val dia1 = curp.substring(8, 10)
-            val dia2 = dia.toInt()
-            if (dia2 >= dia1.toInt()) edad else edad - 1
-        } else {
-            edad - 1
+
+    /**
+     * Obtiene la entidad federativa a partir de una CURP válida.
+     * @param curp La CURP válida.
+     * @return La entidad federativa correspondiente o una cadena vacía si la CURP no es válida.
+     */
+    fun getEntidadFederativa(curp: String): String {
+        if (validarCurp(curp)) {
+            val claveEntidad = curp.substring(11, 13)
+            return estados_curp(claveEntidad)
         }
 
-        if (edad < 4) {
-            println("La fecha que ha registrado es incongruente, favor de verificarla.")
-        }
-        Estadistica = edad
-        }
-        return  edad
+        return ""
     }
+
+
+    /**
+     * Obtiene el sexo a partir de una CURP válida.
+     * @param curp La CURP válida.
+     * @return El sexo ("H" para hombre, "M" para mujer) o una cadena vacía si la CURP no es válida.
+     */
+    fun getSex(curp: String): String {
+        if (validarCurp(curp)) {
+            return curp.substring(10, 11)
+        }
+
+        return ""
+    }
+
+    fun getSex2(curp: String):Boolean {
+        var valor = false
+        try {
+            val sexo = curp.substring(10, 11)
+            if (sexo == "M") valor = false
+            if (sexo == "H") valor = true
+        }catch (Ex:Exception){
+            valor = false
+        }
+
+        return valor
+    }
+
+
+
+    // Función auxiliar para verificar si una fecha es válida
+    private fun esFechaValida(fecha: String): Boolean {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        dateFormat.isLenient = false
+
+        return try {
+            dateFormat.parse(fecha)
+            true
+        } catch (e: Exception) {
+            false
+        }
+    }
+
+
+
+
 
 }

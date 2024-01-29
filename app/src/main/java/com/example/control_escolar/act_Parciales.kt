@@ -264,7 +264,7 @@ class act_Parciales : AppCompatActivity(){
         }
         android.app.AlertDialog.Builder(this)
             .setView(v)
-            .setPositiveButton("Ok"){
+            .setPositiveButton("Si"){
                     dialog,_->
                 if (tipe == 1 ) printPdfPartial(selection)
                 if (tipe == 2) printExcelPartial(selection)
@@ -379,7 +379,7 @@ class act_Parciales : AppCompatActivity(){
     }
 
     fun updatelist(){
-        lista_Calificacion_evaluada.adapter =  adapterCalificar(this, listacalificar)
+        lista_Calificacion_evaluada.adapter =  adapterCalificar(this, listacalificar, TareasBD(this).getCalificationByid(0))
     }
 
     fun loadDetailsCalificationsSpecial(){

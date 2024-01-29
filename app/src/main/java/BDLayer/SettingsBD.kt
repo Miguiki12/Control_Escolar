@@ -1,5 +1,6 @@
 package BDLayer
 
+import LogicLayer.Formats
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
@@ -26,9 +27,14 @@ data class SettingsBD(var context: Context):SQLiteOpenHelper(
     var sEmail_direccion = ""
     var sN_maestro = ""
     var error = ""
-    var sEstadistica1 = ""
-    var sEstadistica2 = ""
-    var sEstadistica3 = ""
+    var sCiclo = Formats.obtenerRangoDeAnios().split('-')
+    var sEstadistica1 = "${sCiclo[0]}-09-16"
+    var sEstadistica2 = "${sCiclo[0]}-12-31"
+    var sEstadistica3 = "${sCiclo[1]}-03-31"
+    var sEstadistica4 = "${sCiclo[1]}-06-15"
+    var sEstadistica5 = "${sCiclo[1]}-07-15"
+    var sF_Estadistica = "${sCiclo[0]}-09-01"
+
 
     init {
         db = this.writableDatabase
@@ -39,19 +45,22 @@ data class SettingsBD(var context: Context):SQLiteOpenHelper(
     public override fun onCreate(db: SQLiteDatabase?) {
         try {
             val CrearTabla = "CREATE TABLE if not exists Configuracion " +
-                    "(C_materia Integer, Dia Integer, Mes Integer, Anticipacion Integer,  Decimales Integer, Condicionado Boolean,  as_Suspendido Boolean, " +
-                    "Cal_menor Integer, Email Text, Contrasena Text, Email_direccion Text, N_maestro Text, Estadistica1 Text, Estadistica2 Text, Estadistica3 Text, " +
+                    "(C_materia Integer, Dia Integer, Mes Integer, Anticipacion Integer,  Decimales Integer, Condicionado Boolean,  Suspendido Boolean, " +
+                    "Cal_menor Integer, Email Text, Contrasena Text, Email_direccion Text, N_maestro Text, Estadistica1 Text, Estadistica2 Text, Estadistica3 Text, Estadistica4 Text, Estadistica5 Text, F_Estadistica Text, " +
                     "FOREIGN KEY(C_materia) REFERENCES Materia(C_materia))"
             db!!.execSQL(CrearTabla)
-
+            //insertamos por default los valores en la tabla
+            newSettings()
         } catch (Ex: Exception) {
             error = Ex.message.toString()
         }
     }
 
     public fun Createtable(){
-        val CrearTabla = "CREATE TABLE if not exists Configuracion " +
-                "(C_materia Integer, Dia Integer, Mes Integer, Anticipacion Integer,  Decimales Integer, Condicionado Boolean,  as_Suspendido Boolean, Cal_menor Integer, Email Text, Contrasena Text, Email_direccion Text, N_maestro Text, FOREIGN KEY(C_materia) REFERENCES Materia(C_materia))"
+        val CrearTabla = "CREATE TABLE if not exists Configuracion "+
+                                    "(C_materia Integer, Dia Integer, Mes Integer, Anticipacion Integer,  Decimales Integer, Condicionado Boolean,  Suspendido Boolean, "+
+                                    "Cal_menor Integer, Email Text, Contrasena Text, Email_direccion Text, N_maestro Text, Estadistica1 Text, Estadistica2 Text, Estadistica3 Text, Estadistica4 Text, Estadistica5 Text, F_Estadistica Text, " +
+                                    "FOREIGN KEY(C_materia) REFERENCES Materia(C_materia))"
         db!!.execSQL(CrearTabla)
     }
 
@@ -70,8 +79,8 @@ data class SettingsBD(var context: Context):SQLiteOpenHelper(
 
     public fun newSettings():Boolean{
         try {
-                val Insertar = "Insert into Configuracion (C_materia, Dia, Mes, Anticipacion, Decimales, Condicionado, as_Suspendido, Cal_menor, Email, Contrasena, Email_direccion, N_maestro, Estadistica1, Estadistica2, Estadistica3)" +
-                        " values ($iC_materia, $iDia,  $iMes, $iAnticipacion, $iDecimales, $iCondicionado, $ias_Suspendido, $iCal_menor, '$sEmail', '$sContrasena', '$sEmail_direccion', '$sN_maestro', '$sEstadistica1', '$sEstadistica2', '$sEstadistica3')"
+                val Insertar = "Insert into Configuracion (C_materia, Dia, Mes, Anticipacion, Decimales, Condicionado, Suspendido, Cal_menor, Email, Contrasena, Email_direccion, N_maestro, Estadistica1, Estadistica2, Estadistica3, Estadistica4, Estadistica5, F_Estadistica)" +
+                        " values ($iC_materia, $iDia,  $iMes, $iAnticipacion, $iDecimales, $iCondicionado, $ias_Suspendido, $iCal_menor, '$sEmail', '$sContrasena', '$sEmail_direccion', '$sN_maestro', '$sEstadistica1', '$sEstadistica2', '$sEstadistica3','$sEstadistica4', '$sEstadistica5', '$sF_Estadistica')"
                 db!!.execSQL(Insertar)
                 error = "Se registro correctamente "
                 return true
@@ -81,10 +90,24 @@ data class SettingsBD(var context: Context):SQLiteOpenHelper(
         }
     }
 
+    fun updteAgeEstadistic(day:Int, mounth:Int, c_materia: Int){
+        val sQuery = "Update Configuracion set Dia = $day , Mes = $mounth where c_materia = $c_materia"
+
+        db.execSQL(sQuery)
+
+    }
+
+
+    fun updteDateEstadistic(date:String, c_materia: Int){
+        val sQuery = "Update Configuracion set F_Estadistica = '$date' where c_materia = $c_materia"
+
+        db.execSQL(sQuery)
+
+    }
 
     public fun getAllSettings(): Cursor {
         try {
-            val columnas = arrayOf("c_materia", "Dia", "Mes", "Anticipacion", "Condicionado", "as_Suspendido","Cal_menor", "Email", "Contrasena", "Email_direccion","Decimales", "N_maestro", "Estadistica1","Estadistica2", "Estadistica3")
+            val columnas = arrayOf("c_materia", "Dia", "Mes", "Anticipacion", "Condicionado", "Suspendido","Cal_menor", "Email", "Contrasena", "Email_direccion","Decimales", "N_maestro", "Estadistica1","Estadistica2", "Estadistica3", "Estadistica4", "Estadistica5")
             return db.query("Configuracion", columnas, null, null, null, null, "c_materia")
         }catch (Ex:Exception){
             val columnas = arrayOf("c_materia", "Dia", "Mes", "Anticipacion", "Condicionado", "as_Suspendido","Cal_menor", "Email", "Contrasena", "Email_direccion", "N_maestro")
@@ -104,15 +127,18 @@ data class SettingsBD(var context: Context):SQLiteOpenHelper(
     }
 
 
-    public  fun getEstadisticsDates(): Triple<String?, String?, String?>? {
+    public  fun getEstadisticsDates(): Array<String>? {
         try {
-            val sQuery = "SELECT Estadistica1, Estadistica2, Estadistica3 FROM configuracion"
+            val dates: Array<String> = arrayOf("", "", "", "","")
+            val sQuery = "SELECT Estadistica1, Estadistica2, Estadistica3, Estadistica4, Estadistica5 FROM configuracion"
             val cursor = db!!.rawQuery(sQuery, null)
             if (cursor.moveToFirst()) {
-                val date1 = cursor.getString(0)
-                val date2 = cursor.getString(1)
-                val date3 = cursor.getString(2)
-                return Triple(date1, date2, date3)
+                 dates[0] = cursor.getString(0)
+                 dates[1] = cursor.getString(1)
+                 dates[2] = cursor.getString(2)
+                 dates[3] = cursor.getString(3)
+                 dates[4] = cursor.getString(4)
+                return dates
             } else {
                 return null
             }
@@ -120,6 +146,33 @@ data class SettingsBD(var context: Context):SQLiteOpenHelper(
             Toast.makeText(context, Ex.message.toString(), Toast.LENGTH_SHORT).show()
             return null
         }
+    }
+
+    fun getDateStadistic(c_materia: Int):String{
+        val sQuery = "Select F_estadistica from Configuracion where c_materia = $c_materia"
+
+        val cursor = db.rawQuery(sQuery, null)
+
+        return if (cursor.moveToFirst()) cursor.getString(0)
+        else ""
+
+        cursor.close()
+
+    }
+
+    fun getDayandMounthEstadistic(c_materia:Int):Pair<Int, Int>{
+
+        val sQuery = "Select Dia, Mes from Configuracion where c_materia = 0"
+        var dia = 0
+        var mes = 0
+        val cursor = db.rawQuery(sQuery, null)
+        if (cursor.moveToFirst()){
+
+            dia = cursor.getInt(0)
+            mes = cursor.getInt(1)
+
+        }
+        return Pair(dia, mes)
     }
 
 
@@ -168,25 +221,13 @@ data class SettingsBD(var context: Context):SQLiteOpenHelper(
     }
 
     fun validations(dia:String, mes:String, decimales:String):Boolean{
-        return !(isNumeric(dia.toString()) && isNumeric(mes.toString()) && isNumeric(decimales.toString()))
+        return !(Formats.isNumeric(dia.toString()) && Formats.isNumeric(mes.toString()) && Formats.isNumeric(decimales.toString()))
     }
 
 
-    fun isNumeric(cadena: String): Boolean {
-        val resultado: Boolean
-        resultado = try {
-            cadena.toInt()
-            true
-        } catch (excepcion: NumberFormatException) {
-            false
-        }
-        return resultado
-    }
 
-    fun addColumnN_teacher(){
-        val consulta = "ALTER TABLE Configuracion ADD COLUMN N_maestro TEXT"
-        db.execSQL(consulta)
-    }
+
+
 
 
 

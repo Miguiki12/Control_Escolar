@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_date_income"
+        android:tooltipText="Seleccione la fecha en la que los alumnos fueron registrados"
+        android:title="Fecha Registro" />
+    <item
+        android:id="@+id/nav_date_estadistic"
+        android:tooltipText="Seleccione la fecha para calcular la edad de la estadistica"
+        android:title="Fecha Estadistica" />
+
+</menu>

@@ -1,5 +1,6 @@
 package com.example.control_escolar
 
+import BDLayer.SettingsBD
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
@@ -317,8 +318,8 @@ class BD_Escuelas(context: Context, nombrebd:String):SQLiteOpenHelper(
         try {
             val CrearTabla = "CREATE TABLE if not exists Configuracion " +
                     "(C_materia Integer, Dia Integer, Mes Integer, Anticipacion Integer,  " +
-                    "Decimales Integer, Condicionado Boolean,  as_Suspendido Boolean," +
-                    " Cal_menor Integer, Email Text, Contrasena Text, Email_direccion Text, N_maestro Text, Estadistica1 Text, Estadistica2 Text, Estadistica3 Text, " +
+                    "Decimales Integer, Condicionado Boolean,  Suspendido Boolean," +
+                    " Cal_menor Integer, Email Text, Contrasena Text, Email_direccion Text, N_maestro Text, Estadistica1 Text, Estadistica2 Text, Estadistica3 Text,  Estadistica4 Text, Estadistica5 Text,  F_Estadistica Text, " +
                     " FOREIGN KEY(C_materia) REFERENCES Materia(C_materia) ON DELETE CASCADE ON UPDATE CASCADE)"
             db!!.execSQL(CrearTabla)
         }
@@ -371,6 +372,8 @@ class BD_Escuelas(context: Context, nombrebd:String):SQLiteOpenHelper(
             onCreateTableParciales()
             onCreatetableCalificacionestemp()
             onCreatetableActividad_Especial()
+
+            SettingsBD(context).newSettings()
         }catch (Ex:Exception){
             Toast.makeText(context, Ex.message.toString(), Toast.LENGTH_SHORT).show()
         }

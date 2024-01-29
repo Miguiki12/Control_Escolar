@@ -252,107 +252,6 @@
 
 
 
-        <!--<androidx.cardview.widget.CardView
-            android:id="@+id/card_enail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-
-            app:cardCornerRadius="10dp"
-            app:cardElevation="6dp"
-            app:contentPadding="4dp">
-
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp">
-
-
-
-
-                <EditText
-                    android:id="@+id/txtCelular_alumno"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:hint="Celular"
-                    android:inputType="phone" />
-
-                <EditText
-                    android:id="@+id/txtColonia_alumno"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtCelular_alumno"
-                    android:hint="Colonia"
-                    android:inputType="textPersonName"/>
-
-
-                <EditText
-                    android:id="@+id/txtDireccion_alumno"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtColonia_alumno"
-                    android:hint="Direccion"
-                    android:inputType="textPersonName"/>
-
-                <EditText
-                    android:id="@+id/txtCurp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Curp"
-                    android:layout_below="@id/txtDireccion_alumno"
-                    android:inputType="textPersonName"
-                    android:textSize="16sp" />
-                <EditText
-                    android:id="@+id/edit_Email_alumno"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Email"
-                    android:layout_below="@+id/txtCurp"
-                    android:inputType="textEmailAddress"
-                    android:textSize="16sp" />
-
-                <EditText
-                    android:id="@+id/txtTutor_alumno"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/edit_Email_alumno"
-                    android:hint="Tutor"
-                    android:inputType="textPersonName"
-                    android:textSize="16sp" />
-
-                <Spinner
-                    android:id="@+id/cbxsituacion"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_below="@+id/txtTutor_alumno"
-                    android:layout_alignParentStart="true"
-                    android:entries="@array/Situacion" />
-                <CheckBox
-                    android:id="@+id/cbxCondicionado"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Condicionado
-"                   android:layout_below="@+id/cbxsituacion"/>
-                <Button
-                    android:id="@+id/btnRegistrarAlumno"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_below="@+id/cbxCondicionado"
-                    android:backgroundTint="#1A8AF9"
-                    android:text="REGISTRAR ALUMNO"
-                    android:textColor="#FBFBFB"
-                    android:textColorLink="#FFFFFF"
-                    android:textSize="18dp" />
-
-
-
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>-->
-
-
         <androidx.cardview.widget.CardView
             android:id="@+id/card_dates_estadisticts"
             android:layout_width="match_parent"
@@ -369,7 +268,7 @@
             android:padding="16dp">
 
 
-            <TextView
+        <TextView
                 android:id="@+id/txt_data_estadistic_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -399,6 +298,28 @@
                 android:textColor="#57CB05"
                 android:layout_below="@+id/txt_data_estadistic_2"
                 android:text="ESTADISCA 3"/>
+
+            <TextView
+                android:id="@+id/txt_data_estadistic_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:textColor="#57CB05"
+                android:layout_below="@+id/txt_data_estadistic_3"
+                android:text="ESTADISCA 4"/>
+
+            <TextView
+                android:id="@+id/txt_data_estadistic_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:textColor="#57CB05"
+                android:layout_below="@+id/txt_data_estadistic_4"
+                android:text="ESTADISCA 4"/>
 
             <TextView
                 android:id="@+id/txt_select_estadistic_1"
@@ -434,6 +355,31 @@
                 android:layout_below="@id/txt_data_estadistic_2"
                 android:text="2024-06-15"/>
 
+            <TextView
+                android:id="@+id/txt_select_estadistic_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_marginLeft="130dp"
+                android:textColor="#57CB05"
+                android:layout_below="@id/txt_data_estadistic_4"
+                android:text="2024-06-15"/>
+
+            <TextView
+                android:id="@+id/txt_select_estadistic_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_marginLeft="130dp"
+                android:textColor="#57CB05"
+                android:layout_below="@id/txt_data_estadistic_3"
+                android:text="2024-06-15"/>
+
+
             <Button
                 android:id="@+id/btn_select_estadistic_1"
                 android:layout_width="45dp"
@@ -467,6 +413,37 @@
                 android:layout_alignParentEnd="true"
                 android:layout_below="@id/txt_data_estadistic_2"
                 android:text=""/>
+
+            <Button
+                android:id="@+id/btn_select_estadistic_4"
+                android:layout_width="45dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="14dp"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:textColor="#57CB05"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/txt_data_estadistic_3"
+                android:text=""/>
+
+            <Button
+                android:id="@+id/btn_select_estadistic_5"
+                android:layout_width="45dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="14dp"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:textColor="#57CB05"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/txt_data_estadistic_4"
+                android:text=""/>
+
+            <!--<ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_data_estadistic_4"
+                android:entries="@array/ESTADISTICAS"/>-->
+
 
         </RelativeLayout>
         </androidx.cardview.widget.CardView>

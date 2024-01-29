@@ -1,5 +1,6 @@
 package com.example.control_escolar
 
+import BDLayer.AlumnosBD
 import BDLayer.TareasBD
 import android.content.Context
 import android.database.Cursor
@@ -42,10 +43,10 @@ class act_Calificar : AppCompatActivity() {
         this.supportActionBar?.title = nombre_actividad
         this.supportActionBar?.subtitle =  nombre_materia +": "+ tipo + " - valor $valor de 100"
         TareasBD = TareasBD(this)
-        //Toast.makeText(this, valor, Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, c_actividad, Toast.LENGTH_SHORT).show()
         try {
             if (especial.toString() == "0"){
-                if(CargarCalificados() == 0) CargarAlumnos()
+                loadStudentForQualify(fecha_actividad)
             }
             else loadEspecials()
         }catch (Ex:Exception){
@@ -80,75 +81,62 @@ class act_Calificar : AppCompatActivity() {
     }
 
 
-    fun CargarCalificados():Int{
-        alumnos_calificados = TareasBD.obtenerCalificacion(c_actividad)
-        try {
-            var count = 0
-            listacalificar.clear()
-            if(alumnos_calificados.moveToFirst()){
-                do{
-                    var calificacion = ""
-                    if (!alumnos_calificados.getString(3).isNullOrEmpty()) calificacion = alumnos_calificados.getString(3)
-                    listacalificar.add(DatosCalificar(alumnos_calificados.getString(2), "N_lista " +alumnos_calificados.getString(5), R.drawable.alumno, calificacion.toString(), alumnos_calificados.getString(6).toInt(), alumnos_calificados.getString(1), c_actividad,fecha_actividad,0))
-                    count ++
-                }while (alumnos_calificados.moveToNext())
-                updatelist()
-            }
-
-        }catch (Ex:Exception){
-            Toast.makeText(this, Ex.message.toString(), Toast.LENGTH_SHORT).show()
-        }
-        return alumnos_calificados.count
-    }
 
 
-    /*fun CargarCalificados():Int{
-        alumnos_calificados = TareasBD.obtenerCalificacion(c_actividad)
-        var indices : List<Int>?
-        var target = ""
-        var count = 0
-        try {
-            if(alumnos_calificados.moveToFirst()){
-                while (count< alumnos_calificados.count){
-                    target = alumnos_calificados.getString(1)
-                    indices = listacalificar.indices
-                        .filter { listacalificar[it].folio == target }
-                        .toList()
-                    if (indices.isNotEmpty()) {
-                        listacalificar[indices[0]].calificacion = alumnos_calificados.getString(3)
-                    } else {
-                        // Realiza alguna acción si la lista de índices está vacía, ya que no se encontró el elemento buscado
-                    }
-                    alumnos_calificados.moveToNext()
-                    count++
-                }
-                updatelist()
-            }
-        }catch (Ex:Exception){
-            Toast.makeText(this, Ex.message.toString(), Toast.LENGTH_SHORT).show()
-        }
-        return alumnos_calificados.count
-    }*/
+
+
 
 
     fun CargarAlumnos():Int{
-        var tareas = Nombre_Escuela.Alumnos
+        var tareas = AlumnosBD(this).obtenerAllsinBajas() // Nombre_Escuela.Alumnos
         try {
             var count = 0
             listacalificar.clear()
             if(tareas.moveToFirst()){
-                while(count < tareas.count){                                                                        //PictureLoader.loadPicture(this, Nombre_Escuela.Alumnos.getBlob(19))
-                    listacalificar.add(DatosCalificar(tareas.getString(1), "N_lista " +tareas.getString(18), R.drawable.alumno,"", tareas.getString(4).toInt(), tareas.getString(0), c_actividad,fecha_actividad,0))
+                while(count < tareas.count){
+                    var f_baja = ""
+                    var f_alta  = ""
+                    //PictureLoader.loadPicture(this, Nombre_Escuela.Alumnos.getBlob(19))
+                    if (!tareas.getString(30).isNullOrEmpty() )   f_baja = tareas.getString(30)
+                    if (!tareas.getString(31).isNullOrEmpty() )   f_alta = tareas.getString(31)
+                    listacalificar.add(DatosCalificar(tareas.getString(1), "N_lista " +tareas.getString(18),
+                        R.drawable.alumno,"", tareas.getString(4).toInt(), tareas.getString(0), c_actividad,fecha_actividad,0, f_baja,f_alta))
                     tareas.moveToNext()
                     count ++
                 }
                updatelist()
             }
+
             //tareas.close()
         }catch (Ex:Exception){
             Toast.makeText(this, Ex.message.toString(), Toast.LENGTH_SHORT).show()
         }
         return listacalificar.size
+    }
+
+    fun loadStudentForQualify(date:String){
+        alumnos_calificados = AlumnosBD(this).getStudentforQualify(fecha_actividad) // Nombre_Escuela.Alumnos
+        try {
+            listacalificar.clear()
+            if(alumnos_calificados.moveToFirst()){
+                do{
+                    var f_baja = ""
+
+                    //PictureLoader.loadPicture(this, Nombre_Escuela.Alumnos.getBlob(19))
+                    if (!alumnos_calificados.getString(5).isNullOrEmpty() )   f_baja = alumnos_calificados.getString(5)
+
+                    listacalificar.add(DatosCalificar(alumnos_calificados.getString(2), "N_lista " +alumnos_calificados.getString(1),
+                        R.drawable.alumno,"", alumnos_calificados.getString(3).toInt(), alumnos_calificados.getString(0), c_actividad,fecha_actividad,0, f_baja,alumnos_calificados.getString(4)))
+
+                }while (alumnos_calificados.moveToNext())
+                updatelist()
+            }
+
+
+        }catch (Ex:Exception){
+            Toast.makeText(this, Ex.message.toString(), Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     fun loadEspecials(){
@@ -160,7 +148,7 @@ class act_Calificar : AppCompatActivity() {
                 while(count < tareas.count){
                     listacalificar.add(DatosCalificar(tareas.getString(1), "N_lista " +tareas.getString(18),
                         //PictureLoader.loadPicture(this,Nombre_Escuela.Alumnos.getBlob(19))
-                        R.drawable.alumno,tareas.getString(19), tareas.getString(4).toInt(), tareas.getString(0), c_actividad,fecha_actividad,0))
+                        R.drawable.alumno,tareas.getString(19), tareas.getString(4).toInt(), tareas.getString(0), c_actividad,fecha_actividad,0, tareas.getString(19), tareas.getString(20)))
                     tareas.moveToNext()
                     count ++
                 }
@@ -173,9 +161,11 @@ class act_Calificar : AppCompatActivity() {
     }
 
     fun updatelist(){
-        val currentPosition = listaCalificar.firstVisiblePosition
-        listaCalificar.adapter =  adapterCalificar(this, listacalificar)
-        listaCalificar.setSelection(currentPosition)
+        try {
+            val currentPosition = listaCalificar.firstVisiblePosition
+            listaCalificar.adapter = adapterCalificar(this,listacalificar,TareasBD.getCalificationByid(c_actividad.toInt()))
+            listaCalificar.setSelection(currentPosition)
+        }catch (Ex:Exception){Toast.makeText(this, Ex.message.toString(),Toast.LENGTH_SHORT).show()}
     }
 
     fun hidekeyboard(){
@@ -189,24 +179,25 @@ class act_Calificar : AppCompatActivity() {
     fun Calificar_Todos(c_actividad:String, calificacion:String){
         try {
             TareasBD.borrarCalificaicion(c_actividad)
-            var calificados = Nombre_Escuela.Alumnos
-            if (alumnos_calificados.count > 0)  calificados = alumnos_calificados
-
-
             var count = 0
-            if (calificados.moveToFirst()){
+            if (alumnos_calificados.moveToFirst()){
                 do {
-                    TareasBD.Calificar_Todos(c_actividad, calificados.getString(0),fecha_actividad,calificacion,"0")
+                    TareasBD.Calificar_Todos(this.c_actividad, alumnos_calificados.getString(0),fecha_actividad,calificacion,"0")
                     listacalificar[count].calificacion = calificacion
                     count++
-                }while (calificados.moveToNext())
+                }while (alumnos_calificados.moveToNext())
                 Toast.makeText(this, TareasBD.error, Toast.LENGTH_SHORT).show()
                 updatelist()
             }
+
         }catch (Ex:Exception){
             Toast.makeText(this, Ex.message.toString(), Toast.LENGTH_SHORT).show()
         }
     }
+
+
+
+
 
     fun Calificar_Todos_Especial(c_actividad:String, calificacion:String){
         try {
@@ -216,7 +207,6 @@ class act_Calificar : AppCompatActivity() {
                     TareasBD.Calificar_Todos_Especial(c_actividad, listacalificar[count].folio,fecha_actividad,calificacion)
                     listacalificar[count].calificacion = calificacion
                     count++
-
             }
             updatelist()
         }catch (Ex:Exception){

@@ -123,7 +123,7 @@ data class TareasBD(var context: Context):SQLiteOpenHelper(
 
     public fun getCalificationEspecials(c_tarea: Int): Cursor {
         val sQuery = " Select Alumno.Folio, Nombre, Apellidop, Apellidom, Sexo, Domicilio, " +
-                "Colonia, Curp, Telefono, Email, Entidad_Federativa, Situacion, Condicionado, Edad, Tutor,Telefono_contacto, Email_contacto, F_nacimiento,N_lista, calificacion " +
+                "Colonia, Curp, Telefono, Email, Entidad_Federativa, Situacion, Condicionado, Edad, Tutor,Telefono_contacto, Email_contacto, F_nacimiento,N_lista, calificacion, f_baja, f_registro " +
                 "from Alumno, Actividad_Especial " +
                 "where Alumno.folio = Actividad_Especial.folio and c_actividades = $c_tarea " +
                 "order by apellidop, apellidom"
@@ -209,6 +209,48 @@ data class TareasBD(var context: Context):SQLiteOpenHelper(
         return listaMes
     }
 
+    public fun getCalificated():MutableList<MutableMap<String, Any>>{
+        val sQuery = "Select count(folio) as total, c_tarea " +
+                "from Tarea " +
+                "group by c_tarea"
+        val cursor = db!!.rawQuery(sQuery, null)
+        val listaMes: MutableList<MutableMap<String, Any>> = mutableListOf()
+        if (cursor.moveToFirst()) {
+            do {
+                val newData1 = mutableMapOf<String, Any>()
+                newData1["total"] = cursor.getString(0)
+                newData1["c_tarea"] = cursor.getString(1)
+                listaMes.add(newData1)
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return listaMes
+    }
+
+    public fun getCalificationByid(c_tarea: Int):MutableList<MutableMap<String, Any>>{
+        val sQuery = "Select * " +
+                "from Tarea " +
+                "where c_tarea = $c_tarea"
+                "group by c_tarea"
+        val cursor = db!!.rawQuery(sQuery, null)
+        val listaTare: MutableList<MutableMap<String, Any>> = mutableListOf()
+        if (cursor.moveToFirst()) {
+            do {
+                val newData1 = mutableMapOf<String, Any>()
+                newData1["c_tarea"] = cursor.getString(0)
+                newData1["Folio"] = cursor.getString(1)
+                newData1["F_entrega"] = cursor.getString(2)
+                newData1["Calificacion"] = cursor.getString(3)
+                newData1["Porciento"] = cursor.getString(4)
+                listaTare.add(newData1)
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return listaTare
+    }
+
+
+
     public fun getActivitysByDay(fecha:String):Cursor{
         val sQuery = "SELECT c_actividades, Tareas.Nombre, Tipo_Actividad.Nombre as tipo, Materia.N_materia " +
                      "FROM Tareas, Tipo_Actividad, Materia " +
@@ -287,6 +329,9 @@ data class TareasBD(var context: Context):SQLiteOpenHelper(
         return db.query("Tareas, Materia, Tipo_Actividad", columnas, condicion, null, null, null, orden)
     }
 
+
+
+
     public fun getPending(): Cursor {
         //val now = Date().date
         val condicion = "Tareas.Tipo = C_actividad and tareas.C_materia = Materia.C_materia and Valor > 0 and Terminada = 0 and  F_entrega = '"+getCurrentDate()+"'"
@@ -319,7 +364,7 @@ data class TareasBD(var context: Context):SQLiteOpenHelper(
     }
     public fun obtenerCalificacion(c_actividad: String): Cursor {
         val condicion = "Alumno.Folio = Tarea.Folio and C_tarea = "+c_actividad
-        val columnas = arrayOf("C_tarea",  "Alumno.Folio", "Nombre", "Calificacion", "F_entrega", "N_lista", "sexo")
+        val columnas = arrayOf("C_tarea",  "Alumno.Folio", "Nombre", "Calificacion", "F_entrega", "N_lista", "sexo","f_baja", "f_registro")
         return db.query("Tarea, Alumno", columnas, condicion, null, null, null, "N_lista")
     }
 

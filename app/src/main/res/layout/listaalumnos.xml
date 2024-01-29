@@ -30,7 +30,6 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="10dp"
             android:text="Alumno"
-
             android:textColor="#1A8AF9"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent" />

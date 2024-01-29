@@ -1,9 +1,8 @@
 package com.example.control_escolar
 
-import BDLayer.ASSESS
-import BDLayer.AlumnosBD
-import BDLayer.SettingsBD
-import BDLayer.crearPDF
+import BDLayer.*
+import DocumentsPDF.EstadisticXLSBuilder
+import DocumentsPDF.createMatriculaPdf
 import LogicLayer.ManagerImage
 import android.app.AlarmManager
 import android.app.NotificationChannel
@@ -253,6 +252,7 @@ class MainActivity2 : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             }
             if (v.rbt_Matricula.isChecked) {
                 pdf.Matricula()
+
                 pdf.abrirdocumento("Matricula", this)
             }
             if (v.rbt_Parcial.isChecked) {
@@ -260,50 +260,48 @@ class MainActivity2 : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 pdf.abrirdocumento("Parcial", this)
             }
             if (v.rbt_Estadistica.isChecked) {
-                Estadistica()
+                //Estadistica2()
+                //EstadisticaXLS()
+                chooseEstadistic()
             }
             if (v.rbt_Boletas.isChecked) {
                 // Acciones para el RadioButton 1
                 pdf.Boleta()
                 pdf.abrirdocumento("Boletas", this)
             }
-            /*if (v.rbt_Traslado.isChecked) {
-                try {
-                    // Obtén el contexto
-                    val context = this // o requireContext() en un fragmento
-
-// Ruta de la base de datos
-                    val databaseName = Nombre_Escuela.getName()
-                    val databasePath = File("/data/user/0/com.example.control_escolar/databases/", databaseName).path
-                    Toast.makeText(this, this.getDatabasePath(Nombre_Escuela.getName()).toString(), Toast.LENGTH_SHORT).show()
-
-// Inicializa el GoogleDriveManager y realiza la copia de seguridad y subida
-                    val googleDriveManager = GoogleDriveManager(context)
-                    googleDriveManager.backupAndUploadDatabaseToDrive(databasePath)
-                }catch (Ex:Exception){Toast.makeText(this, Ex.message.toString(),Toast.LENGTH_SHORT).show()}
-        }*/
         }
 
         addDialog.create()
         addDialog.show()
     }
 
-    fun Estadistica(){
+
+    fun chooseEstadistic(){
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(title)
+            builder.setMessage("De que manera desea mostrar la Estadistica")
+            builder.setPositiveButton("PDF") { dialog, _ ->
+                dialog.dismiss()
+                Estadistica2()
+            }
+            builder.setNegativeButton("EXCEL") { dialog, _ ->
+                dialog.dismiss()
+                EstadisticaXLS()
+            }
+
+            val dialog = builder.create()
+            dialog.show()
+        }
+
+
+    fun EstadisticaXLS(){
         try {
-             val estadisticDates = SettingsBD(this).getEstadisticsDates()
-             val normal1 = alumnos.getEstadisticBySexo1(estadisticDates?.first, estadisticDates?.second)
-             val repetidores = alumnos.getEstadisticRepit(estadisticDates?.first, estadisticDates?.second)
-             val normalizer2 = alumnos.getEstadisticBySexo2(estadisticDates?.first, estadisticDates?.second)
-             //val altasbajas = alumnos.getEstadisticRegisterUnsuscribe(estadisticDates?.first, estadisticDates?.second)
-             val altas = alumnos.getEstadisticRegister(estadisticDates?.first, estadisticDates?.second)
-             val bajas = alumnos.getEstadisticUnsuscribe(estadisticDates?.first, estadisticDates?.second)
-             val finales = alumnos.getEstadisticFinaly(estadisticDates?.second, estadisticDates?.third)
-             val existencia = alumnos.getEstadisticExistence(estadisticDates?.second, estadisticDates?.third)
-             val aprovados = alumnos.getEstadisticApproved(60)
-             val reprovados = alumnos.getEstadisticFailed(60)
-             //pdf.Estadistica()
-             pdf.Estadistica(normal1,repetidores, normalizer2, altas, bajas, finales,existencia, aprovados, reprovados)
-             pdf.abrirdocumento("Estadistica",this)
+            val estadisticDates = SettingsBD(this).getEstadisticsDates()
+            val Estadistica = EstadisticXLSBuilder(this)
+            if (estadisticDates != null) {
+                Estadistica.createBookEstadistic(estadisticDates[0], estadisticDates[1], estadisticDates[2],estadisticDates[3])
+            }
+
         }catch (Ex:Exception){
             Toast.makeText(this,Ex.message.toString(),Toast.LENGTH_SHORT).show()
         }
@@ -311,5 +309,18 @@ class MainActivity2 : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
 
 
+    fun Estadistica2(){
+        try {
+            val estadisticDates = SettingsBD(this).getEstadisticsDates()
+            val Estadistica = createMatriculaPdf(this)
+            if (estadisticDates != null) {
+                Estadistica.Estadistica(estadisticDates[0], estadisticDates[1], estadisticDates[2],estadisticDates[3], estadisticDates[4])
+                pdf.abrirdocumento("Estadistica",this)
+            }
+
+        }catch (Ex:Exception){
+            Toast.makeText(this,Ex.message.toString(),Toast.LENGTH_SHORT).show()
+        }
+    }
 
 }

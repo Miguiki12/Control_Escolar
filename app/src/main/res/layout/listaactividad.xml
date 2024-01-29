@@ -35,13 +35,34 @@
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="5dp"
-
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/txt_Nombre_Actividad"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.828" />
 
+
+            <ImageView
+                android:id="@+id/image_calificated"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginBottom="24dp"
+                android:src="@drawable/ic_calificated"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@+id/txt_Tipo_Actividad"
+                app:layout_constraintStart_toEndOf="@+id/txt_fecha_actividad" />
+
+            <TextView
+                android:id="@+id/text_calificados"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="2dp"
+                android:textSize="10dp"
+                android:text="0/0"
+                app:layout_constraintBottom_toTopOf="@+id/divider2"
+                app:layout_constraintStart_toEndOf="@+id/image_calificated" />
 
             <TextView
                 android:id="@+id/txt_Nombre_Actividad"

@@ -87,7 +87,7 @@ class act_Materias : AppCompatActivity(), AdapterView.OnItemClickListener {
         val nombre = v.findViewById<EditText>(R.id.edit_NombreMateria)
         val addDialog = AlertDialog.Builder(this)
         addDialog.setView(v)
-        addDialog.setPositiveButton("Ok"){
+        addDialog.setPositiveButton("AGREGAR"){
                 dialog,_->
             if (nombre.text.toString().length > 0){
                 if(materiasDB.InsertMateria(nombre.text.toString())){
@@ -102,7 +102,7 @@ class act_Materias : AppCompatActivity(), AdapterView.OnItemClickListener {
             }
 
         }
-        addDialog.setNegativeButton("Cancel"){
+        addDialog.setNegativeButton("CANCELAR"){
                 dialog,_->
             dialog.dismiss()
 

@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.activity_act_aspectos.*
 import kotlinx.android.synthetic.main.cardaspectos.view.*
 
@@ -206,11 +207,30 @@ class act_Aspectos : AppCompatActivity(), AdapterView.OnItemClickListener {
 
     private fun addInfo(name:String) {
         val inflter = LayoutInflater.from(this)
-        val v = inflter.inflate(R.layout.viewdatosaspectos,null)
+        val v = inflter.inflate(R.layout.create_aspect,null)
         var type = 0
         /**set view*/
         val Nombre = v.findViewById<EditText>(R.id.edit_Nombreaspecto)
         val porcentaje = v.findViewById<EditText>(R.id.edit_porcentajeaspectos)
+        val aspectos = v.findViewById<Spinner>(R.id.spinner_aspect)
+        aspectos.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                // Obtiene el elemento seleccionado del Spinner
+                val elementoSeleccionado = parent?.getItemAtPosition(position).toString()
+                if (position < 4){
+                    Nombre.setText(elementoSeleccionado)
+                    Nombre.isVisible = false
+                }
+                else {
+                    Nombre.setText("")
+                    Nombre.isVisible = true
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Maneja el caso en el que no se ha seleccionado nada (opcional)
+            }
+        }
         Nombre.setText(name)
         val addDialog = AlertDialog.Builder(this)
         addDialog.setView(v)

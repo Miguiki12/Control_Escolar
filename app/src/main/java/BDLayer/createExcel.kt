@@ -202,6 +202,7 @@ class createExcel(var context: Context) {
             val numberOfSheets = workbook.numberOfSheets
             //val pathBD = path.toString().split('/')
             //val nameBD = pathBD[pathBD.count() - 1].toString().split('.')
+            //val nameBD = pathBD[pathBD.count() - 1].toString().split('.')
 
             for (i in 0 until numberOfSheets) {
                 val sheet = workbook.getSheetAt(i)
@@ -222,8 +223,6 @@ class createExcel(var context: Context) {
         val headerRow = rows.next() as HSSFRow
         val columnNames = mutableListOf<String>()//lista de nombre de columnas encontradas
         val db = BD_Escuelas(context, bdName) // Obtener tu instancia de base de datos
-
-
 
         // Obtener la primera fila que contiene los nombres de las columnas
         val columnBegin  = db.foundNameTable(tableName)
@@ -779,6 +778,9 @@ class createExcel(var context: Context) {
        }
         return total
    }
+
+
+
 
     fun abrirDocumentoXLS(nombre: String, activity: Activity) {
         val ruta = this.ruta + "$nombre.xls" // Cambia la extensión a .xls

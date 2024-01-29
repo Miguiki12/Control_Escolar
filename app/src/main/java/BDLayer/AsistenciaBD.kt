@@ -66,7 +66,7 @@ data class AsistenciaBD(var context: Context):SQLiteOpenHelper(
     }
 
 
-    public fun obtenerAll(fecha:String): Cursor {
+    /*public fun obtenerAll(fecha:String): Cursor {
         try {
             val condicion = "Alumno.Folio = Asistencia.Folio and Fecha  = '"+fecha+"'"
             val columnas = arrayOf("Nombre", "apellidop", "apellidom", "Alumno.Folio", "Foto", "Asistencia", "sexo", "N_lista","telefono_contacto", "Retardo", "Email_contacto", "Argumentacion")
@@ -77,6 +77,17 @@ data class AsistenciaBD(var context: Context):SQLiteOpenHelper(
             error = Ex.message.toString()
             return db.query("Asistencia, Alumno", columnas, condicion, null, null, null, "Apellidop, Nombre")
         }
+    }*/
+
+
+    public fun obtenerAll(fecha:String): Cursor {
+        val sQuery = "SELECT Nombre, apellidop, apellidom, Alumno.Folio, Foto, Asistencia, sexo, N_lista, telefono_contacto, Retardo, Email_contacto, Argumentacion " +
+                "FROM Asistencia " +
+                "JOIN Alumno ON Alumno.Folio = Asistencia.Folio " +
+                "WHERE Fecha = '$fecha' " +
+                "      AND (f_baja >= '$fecha' OR (f_baja = '' AND f_registro <= '$fecha')) " +
+                "ORDER BY N_lista;"
+        return db.rawQuery(sQuery, null)
     }
 
     public fun getAllTable():Cursor{
@@ -203,6 +214,7 @@ data class AsistenciaBD(var context: Context):SQLiteOpenHelper(
     public fun obtenerFaltas(fecha:String): Cursor {
         val columnas = arrayOf("Email_Contacto", "Nombre", "apellidop", "apellidom")
         return  db.query("Alumno, Asistencia", columnas, "Alumno.Folio = Asistencia.Folio and Asistencia = 0 and fecha = '"+fecha+"'", null, null, null, null)
+
         //cursor.close()
         //return cursor
     }
@@ -232,9 +244,9 @@ data class AsistenciaBD(var context: Context):SQLiteOpenHelper(
         }
     }
 
-    public  fun updateAtNormalAttendance(folio:Int, fecha:String, c_materia: Int):Boolean {
+    public  fun updateAtNormalAttendance(folio:Int, fecha:String, c_materia: Int, status:Int):Boolean {
         try {
-            val condition = "Update Asistencia set retardo = 0  where  folio = $folio and fecha = '$fecha' and c_materia =  $c_materia"
+            val condition = "Update Asistencia set retardo = $status  where  folio = $folio and fecha = '$fecha' and c_materia =  $c_materia"
 
             db!!.execSQL(condition)
             error = "Se actualzo la asistencia correctamente"

@@ -7,6 +7,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.graphics.Bitmap
+import android.widget.Toast
 import com.example.control_escolar.Nombre_Escuela
 import java.io.ByteArrayOutputStream
 
@@ -37,6 +38,22 @@ data class AlumnosBD(var context: Context):SQLiteOpenHelper(
     }
 
 
+    public fun onCreateStudentTemp(db: SQLiteDatabase?) {
+        try {
+            val CrearTabla = "CREATE TABLE if not exists StudentTemp " +
+                    "(Folio INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "N_lista Integer, Nombre TEXT, Apellidop TEXT, Apellidom TEXT, Sexo Integer, Domicilio TEXT, Colonia TEXT, Municipio Text, CP Text, Telefono Text, Email Text, "+
+                    "Entidad_Federativa Text, Curp Text, F_nacimiento Text, Situacion Text, Condicionado Integer, Edad Integer, Estadistica Interger, Foto BLOB, Indigena Integer, " +
+                    "Discapacidad Integer, Especifique Text, " +
+                    "Email_Contacto Text, Tutor Text, Telefono_contacto Text, Ocupacion_contacto Text, Estudios_contacto Text, Tutor_2 Text, Telefono_contacto_2 Text, " +
+                    "Email_Contacto_2 Text, Ocupacion_contacto_2 Text, Estudios_contacto_2 Text, F_registro Text, F_baja Text, Matricula Text)"
+            db!!.execSQL(CrearTabla)
+        } catch (Ex: Exception) {
+            error = Ex.message.toString()
+        }
+    }
+
+
 
 
     override fun onUpgrade(
@@ -49,10 +66,10 @@ data class AlumnosBD(var context: Context):SQLiteOpenHelper(
 
 
 
-    public fun InsertAlumno(nombre:String, apellidop:String, apellidom:String, sexo:Int):Boolean{
+    public fun InsertAlumno(nombre:String, apellidop:String, apellidom:String, sexo:Int, edad:Int, f_nacimiento:String,curp: String, entidad:String, situacion: String):Boolean{
         try {
-            val Insertar = "Insert into Alumno (Nombre, Apellidop, apellidom, sexo, Domicilio, Colonia, Curp, Telefono, Email, Tutor, Situacion, Condicionado,Edad,Email_Contacto,Telefono_Contacto,F_nacimiento, F_registro)" +
-                    " values ('"+nombre+"', '"+apellidop+"', '"+apellidom+"', "+sexo+", '','','','','','','NUEVO INGRESO', 0, 0 ,'','','${Formats.getCurrentDate()}', '${Formats.getCurrentDate()}')"
+            val Insertar = "Insert into Alumno (Nombre, Apellidop, apellidom, sexo, Domicilio, Colonia, Curp, Telefono, Email, Tutor, Situacion, Condicionado,Edad,Email_Contacto,Telefono_Contacto,F_nacimiento, F_registro, F_baja, Entidad_Federativa, Estadistica)" +
+                    " values ('"+nombre+"', '"+apellidop+"', '"+apellidom+"', "+sexo+", '','','$curp','','','','$situacion', 0, $edad ,'','','$f_nacimiento', '${Formats.getCurrentDate()}','','$entidad', ${Formats.calcularEdad(f_nacimiento, "2023-09-01")})"
 
             db!!.execSQL(Insertar)
             //error = Insertar
@@ -65,15 +82,37 @@ data class AlumnosBD(var context: Context):SQLiteOpenHelper(
         }
 
     }
-    public fun InsertAlumno(nombre:String, apellidop:String, apellidom:String, sexo:Int, edad:String, Entidad:String, curp:String, fnacimiento:String, telefono:String, email:String):Boolean{
+    public fun InsertAlumno(nombre:String, apellidop:String, apellidom:String, sexo:Int, edad:String, Entidad:String, curp:String, fnacimiento:String, telefono:String, email:String, f_estadistica:String, f_registro:String):Boolean{
         try {
             var anos = 0
             val fecha = Formats.convertdate(fnacimiento)
             if (isNumeric(edad)) anos = edad.toInt()
             else anos = 0
-            val Insertar = "Insert into Alumno (Nombre, Apellidop, apellidom, sexo, Domicilio, Colonia, Curp, Telefono, Email, Tutor, Situacion, Condicionado,Edad,Email_Contacto,Telefono_Contacto,Entidad_Federativa, F_nacimiento, Estadistica, F_registro)" +
+            val Insertar = "Insert into Alumno (Nombre, Apellidop, apellidom, sexo, Domicilio, Colonia, Curp, Telefono, Email, Tutor, Situacion, Condicionado,Edad,Email_Contacto,Telefono_Contacto,Entidad_Federativa, F_nacimiento, Estadistica, F_registro, F_baja)" +
                     " values ('"+nombre+"', '"+apellidop+"', '"+apellidom+"', "+sexo+", '','','"+curp+"','','','','NUEVO INGRESO', 0, "+anos+" ,'"+email+"','"+telefono+"','"+Entidad+"', '"+fecha+"'" +
-                    ", '${Formats.ageEstadisticWhitDate(fecha,1,9)}', '${Formats.getCurrentDate()}')"
+                    ", ${Formats.calcularEdad(fecha, f_estadistica)}, '$f_registro', '')"
+
+            db!!.execSQL(Insertar)
+            error = Insertar
+            //error = "Se registro correctamente el alumno"
+            return true
+        }catch (Ex:Exception){
+            error = Ex.message.toString()
+            return  false
+        }
+
+    }
+
+    public fun InsertStudentTemp(nombre:String, apellidop:String, apellidom:String, sexo:Int, edad:String, Entidad:String, curp:String, fnacimiento:String, telefono:String, email:String, f_estadistica:String, f_registro:String):Boolean{
+        try {
+            var anos = 0
+            val fecha = Formats.convertdate(fnacimiento)
+            onCreateStudentTemp(db)
+            if (isNumeric(edad)) anos = edad.toInt()
+            else anos = 0
+            val Insertar = "Insert into StudentTemp (Nombre, Apellidop, apellidom, sexo, Domicilio, Colonia, Curp, Telefono, Email, Tutor, Situacion, Condicionado,Edad,Email_Contacto,Telefono_Contacto,Entidad_Federativa, F_nacimiento, Estadistica, F_registro, F_baja)" +
+                    " values ('"+nombre+"', '"+apellidop+"', '"+apellidom+"', "+sexo+", '','','"+curp+"','','','','NUEVO INGRESO', 0, "+anos+" ,'"+email+"','"+telefono+"','"+Entidad+"', '"+fecha+"'" +
+                    ", ${Formats.calcularEdad(fecha, f_estadistica)}, '$f_registro', '')"
 
             db!!.execSQL(Insertar)
             error = Insertar
@@ -126,11 +165,26 @@ data class AlumnosBD(var context: Context):SQLiteOpenHelper(
     }
     }
 
-    public fun Situacion(situacion:String, condicionado:Int, folio:Int, indigena: Int, discapacitado:Int, especifique:String, f_baja:String, n_lista:Int ):Boolean {
+    public fun updateSituacionBaja(condicionado:Int, folio:Int, indigena: Int, discapacitado:Int, especifique:String, f_baja:String, n_lista:Int ):Boolean {
         try {
             val lista = n_lista +100
             val actualizar =
-                "Update  Alumno set Situacion = '$situacion', Condicionado = $condicionado, Indigena = $indigena, discapacidad = $discapacitado, especifique = '$especifique', f_baja = '$f_baja', n_lista  = $lista  where Folio  = $folio"
+                "Update  Alumno set Condicionado = $condicionado, Indigena = $indigena, discapacidad = $discapacitado, especifique = '$especifique', f_baja = '$f_baja', n_lista  = $lista  where Folio  = $folio"
+            db!!.execSQL(actualizar)
+            error = "Se actualizaron correctamente los datos del alumno"
+            return true
+
+        } catch (Ex: Exception) {
+            //error = Ex.message.toString()
+            error = "Hubo un error al actualizar los datos del alumno"
+            return false
+        }
+    }
+    public fun updateSituacionRegistro(situacion:String, condicionado:Int, folio:Int, indigena: Int, discapacitado:Int, especifique:String, f_registro:String, n_lista:Int ):Boolean {
+        try {
+            val lista = n_lista +100
+            val actualizar =
+                "Update  Alumno set Situacion = '$situacion', Condicionado = $condicionado, Indigena = $indigena, discapacidad = $discapacitado, especifique = '$especifique', F_registro = '$f_registro', f_baja = '', n_lista  = $lista  where Folio  = $folio"
             db!!.execSQL(actualizar)
             error = "Se actualizaron correctamente los datos del alumno"
             return true
@@ -262,23 +316,107 @@ data class AlumnosBD(var context: Context):SQLiteOpenHelper(
     }
 
     public fun obtenerAll(): Cursor {
-
         val columnas = arrayOf("Folio", "Nombre", "Apellidop", "Apellidom", "Sexo", "Domicilio",
             "Colonia", "Curp", "Telefono", "Email", "Entidad_Federativa", "Situacion", "Condicionado",
             "Edad", "Tutor","Telefono_contacto", "Email_contacto", "F_nacimiento","N_lista", "Foto",
             "Estudios_contacto","Ocupacion_contacto", "Tutor_2", "Telefono_contacto_2","Email_contacto_2",
-            "Estudios_contacto_2", "Ocupacion_contacto_2", "Discapacidad", "Indigena", "Especifique")
+            "Estudios_contacto_2", "Ocupacion_contacto_2", "Discapacidad", "Indigena", "Especifique","f_baja","f_registro")
         return db.query("Alumno", columnas, "Situacion <> 'BAJA'", null, null, null, "Apellidop COLLATE NOCASE , apellidom COLLATE NOCASE, Nombre COLLATE NOCASE")
     }
+
+
+    public fun getStudentforQualify(date:String):Cursor{
+
+        /*val sQuery = "SELECT Folio, N_lista, nombre,sexo, situacion, f_baja, f_registro " +
+                "FROM Alumno " +
+                "WHERE (f_baja >= '$date') " +
+                "OR (f_baja = '' and f_registro <= '$date') " +
+                "order by N_lista;"*/
+
+        val sQuery = "SELECT Folio, N_lista, nombre,sexo, situacion, f_baja, f_registro " +
+                     "FROM Alumno "+
+                     "WHERE f_registro <= '$date' and f_baja ='' " +
+                     "UNION " +
+                     "SELECT Folio, N_lista, nombre,sexo, situacion, f_baja, f_registro " +
+                     "FROM Alumno " +
+                     "WHERE f_baja >= '$date' and f_registro <= '$date' " +
+                     "ORDER BY N_lista;"
+        return db.rawQuery(sQuery, null)
+    }
+
+
+    public fun getStudentForAsistence(date:String):Cursor{
+        /*val sQuery = "SELECT Nombre, apellidop, apellidom, Alumno.Folio, Foto,  sexo, N_lista, telefono_contacto, Email_contacto " +
+                "FROM Alumno " +
+                "WHERE (f_baja >= '$date' OR (f_baja = '' AND f_registro <= '$date')) " +
+                "ORDER BY N_lista;"*/
+
+        val sQuery = "SELECT Nombre, apellidop, apellidom, Alumno.Folio, Foto,  sexo, N_lista, telefono_contacto, Email_contacto " +
+                "FROM Alumno "+
+                "WHERE f_registro <= '$date' and f_baja ='' " +
+                "UNION " +
+                "SELECT Nombre, apellidop, apellidom, Alumno.Folio, Foto,  sexo, N_lista, telefono_contacto, Email_contacto " +
+                "FROM Alumno " +
+                "WHERE f_baja >= '$date' and f_registro <= '$date' " +
+                "ORDER BY N_lista;"
+        //Toast.makeText(context,sQuery, Toast.LENGTH_SHORT).show()
+        return db.rawQuery(sQuery, null)
+    }
+
+
+
     public fun obtenerAllsinBajas(): Cursor {
 
         val columnas = arrayOf("Folio", "Nombre", "Apellidop", "Apellidom", "Sexo", "Domicilio",
             "Colonia", "Curp", "Telefono", "Email", "Entidad_Federativa", "Situacion", "Condicionado",
             "Edad", "Tutor","Telefono_contacto", "Email_contacto", "F_nacimiento","N_lista", "Foto",
             "Estudios_contacto","Ocupacion_contacto", "Tutor_2", "Telefono_contacto_2","Email_contacto_2",
-            "Estudios_contacto_2", "Ocupacion_contacto_2", "Discapacidad", "Indigena", "Especifique")
+            "Estudios_contacto_2", "Ocupacion_contacto_2", "Discapacidad", "Indigena", "Especifique", "f_baja","f_registro")
         return db.query("Alumno", columnas, null, null, null, null, "Apellidop COLLATE NOCASE , apellidom COLLATE NOCASE, Nombre COLLATE NOCASE")
     }
+
+    public fun getListStudentStadistic1(date:String):Cursor{
+
+        val sQuery = "Select N_lista, Nombre, Apellidop, Apellidom, Curp, F_registro, Sexo, Estadistica, Situacion, F_baja, Entidad_Federativa " +
+                     "From Alumno " +
+                     "where EDAD > 0 and f_registro <= '$date' " +
+                     "order by Apellidop COLLATE NOCASE , apellidom COLLATE NOCASE, Nombre COLLATE NOCASE"
+        //Toast.makeText(context, sQuery, Toast.LENGTH_SHORT).show()
+        return db.rawQuery(sQuery, null)
+    }
+
+    public fun getListStudentStadisticFormer():Cursor{
+
+        val sQuery = "Select N_lista, Nombre, Apellidop, Apellidom, Curp, F_registro, Sexo, Estadistica, Situacion, F_baja, Entidad_Federativa " +
+                "From Alumno " +
+                "order by Apellidop COLLATE NOCASE , apellidom COLLATE NOCASE, Nombre COLLATE NOCASE"
+        return db.rawQuery(sQuery, null)
+    }
+
+    public fun getListStudentStadistic2(begin:String, end:String, star:String):Cursor{
+
+        val sQuery = "Select N_lista, Nombre, Apellidop, Apellidom, Curp, F_registro, Sexo, Estadistica, Situacion, F_baja, Entidad_Federativa " +
+                "From Alumno " +
+                "where Estadistica > 0 and f_registro <= '$end' " +
+                "except " +
+                "Select N_lista, Nombre, Apellidop, Apellidom, Curp, F_registro, Sexo, Estadistica, Situacion, F_baja, Entidad_Federativa " +
+                "From Alumno " +
+                "where Estadistica > 0 and f_baja between '2023-08-01' and '$begin' " +
+                "order by Apellidop COLLATE NOCASE , apellidom COLLATE NOCASE, Nombre COLLATE NOCASE"
+        //Toast.makeText(context, sQuery, Toast.LENGTH_SHORT).show()
+        return db.rawQuery(sQuery, null)
+    }
+
+    public fun getEstadisticEntidad_Federativa():Cursor{
+        val sQuery = "SELECT COUNT (*) as total,Sexo , edad, Entidad_Federativa " +
+                     "FROM Alumno " +
+                     "where Edad > 0 " +
+                     "GROUP BY EDAD, SEXO, ENTIDAD_FEDERATIVA " +
+                     "ORDER BY edad, sexo, Entidad_Federativa"
+        return db.rawQuery(sQuery, null)
+    }
+
+
 
     public fun get_All_by_folio(): Cursor {
         val columnas = arrayOf("Folio", "Nombre", "Apellidop", "Apellidom", "Sexo", "Domicilio",
@@ -296,14 +434,14 @@ data class AlumnosBD(var context: Context):SQLiteOpenHelper(
         return  fillData(db.rawQuery(sQuery,null))
     }
 
-    fun getEstadisticBySexo1(date1: String?, date2:String?):MutableList<MutableMap<String, Any>>{
-        val sQuery = "SELECT Sexo, COUNT(*) AS Total, edad, SITUACION " +
-                "FROM Alumno " +
-                "where Edad > 0 and not Situacion = 'REPETIDOR' and F_registro between '$date1' and '$date2'" +
-                "GROUP BY Sexo, edad " +
-                "ORDER BY edad, sexo"
-        return  fillData(db.rawQuery(sQuery,null))
 
+    fun getEstadisticBySexo1(date: String?):MutableList<MutableMap<String, Any>>{
+        val sQuery = "SELECT Sexo, COUNT(*) AS Total, Estadistica, SITUACION " +
+                "FROM Alumno " +
+                "where Edad > 0  and F_registro <= '$date' " +
+                "GROUP BY Sexo, Estadistica, Situacion " +
+                "ORDER BY Estadistica, sexo"
+        return  fillData(db.rawQuery(sQuery,null))
     }
 
     fun getEstadisticRepit(date1: String?, date2:String?):MutableList<MutableMap<String, Any>>{
@@ -316,38 +454,47 @@ data class AlumnosBD(var context: Context):SQLiteOpenHelper(
     }
 
     fun getEstadisticBySexo2(date1: String?, date2:String?):MutableList<MutableMap<String, Any>>{
-        val sQuery = "SELECT Sexo, COUNT(*) AS Total, edad, SITUACION " +
+        val sQuery = "SELECT Sexo, folio, Estadistica, Situacion, f_baja,f_registro " +
+                     "FROM Alumno " +
+                     "where Edad > 0 and F_registro <= '$date1' "+
+                     "except "+
+                     "SELECT Sexo, folio, Estadistica, Situacion, f_baja,f_registro "+
+                     "FROM Alumno " +
+                     "where Edad > 0 and F_baja <>'' and F_baja <= '$date1' "+
+                     "ORDER BY Estadistica, sexo;"
+
+        /*val sQuery = "SELECT Sexo, COUNT(*) AS Total, edad, situacion " +
+                     "FROM Alumno " +
+                     "where Edad > 0 and f_baja = '' and F_registro <= '$date1' " +
+                     "GROUP BY Sexo, edad " +
+                     "ORDER BY edad, sexo"*/
+        return  fillData(db.rawQuery(sQuery,null))
+    }
+
+    fun getEstadisticUnsuscribe2(date1: String?, date2:String?):MutableList<MutableMap<String, Any>>{
+        val sQuery = "SELECT Sexo, COUNT(*) AS Total, Estadistica, SITUACION " +
                 "FROM Alumno " +
-                "WHERE Edad > 0 AND Situacion NOT IN ('ALTA', 'BAJA') and F_registro between '$date1' and '$date2'" +
+                "WHERE Edad > 0 and F_baja between '$date1' and '$date2' " +
                 "GROUP BY Sexo, edad " +
-                "ORDER BY edad, sexo;"
-        return  fillData(db.rawQuery(sQuery,null))
-    }
-
-    fun getEstadisticRegisterUnsuscribe(date1: String?, date2:String?):MutableList<MutableMap<String, Any>>{
-        val sQuery = "SELECT Sexo, COUNT(*) AS Total, edad, SITUACION " +
-                "FROM Alumno " +
-                "WHERE Edad > 0 AND Situacion IN ('ALTA', 'BAJA') " +
-                "GROUP BY Sexo, edad, Situacion " +
                 "ORDER BY edad, sexo"
         return  fillData(db.rawQuery(sQuery,null))
     }
 
-    fun getEstadisticUnsuscribe(date1: String?, date2:String?):MutableList<MutableMap<String, Any>>{
-        val sQuery = "SELECT Sexo, COUNT(*) AS Total, edad, SITUACION " +
+    fun getEstadisticUnsuscribe(date: String?):MutableList<MutableMap<String, Any>>{
+        val sQuery = "SELECT Sexo, COUNT(*) AS Total, Estadistica, SITUACION " +
                 "FROM Alumno " +
-                "WHERE Edad > 0 AND Situacion IN ('BAJA') and F_baja between '$date1' and '$date2'" +
-                "GROUP BY Sexo, edad, Situacion " +
-                "ORDER BY edad, sexo"
+                "WHERE Edad > 0 and F_baja <>'' and F_baja <= '$date' " +
+                "GROUP BY Sexo, Estadistica " +
+                "ORDER BY Estadistica, sexo"
         return  fillData(db.rawQuery(sQuery,null))
     }
 
     fun getEstadisticRegister(date1: String?, date2:String?):MutableList<MutableMap<String, Any>>{
-        val sQuery = "SELECT Sexo, COUNT(*) AS Total, edad, SITUACION " +
+        val sQuery = "SELECT Sexo, COUNT(*) AS Total, Estadistica, SITUACION " +
                 "FROM Alumno " +
-                "WHERE Edad > 0 AND Situacion IN ('ALTA') and F_registro between '$date1' and '$date2'" +
-                "GROUP BY Sexo, edad, Situacion " +
-                "ORDER BY edad, sexo"
+                "WHERE Edad > 0 AND Situacion IN ('ALTA') and F_registro between '$date1' and '$date2' " +
+                "GROUP BY Sexo, Estadistica, Situacion " +
+                "ORDER BY Estadistica, sexo"
         return  fillData(db.rawQuery(sQuery,null))
     }
 
@@ -431,6 +578,16 @@ data class AlumnosBD(var context: Context):SQLiteOpenHelper(
             return false
 
         }
+    }
+
+    public fun deleteStudentsTemp(){
+        try {
+            val sQuery = "Delete from StudentTemp"
+
+            db.execSQL(sQuery)
+        }catch (Ex:Exception){Toast.makeText(context, Ex.message.toString(), Toast.LENGTH_LONG).show()}
+
+
     }
 
     public fun ordenarporN_lista(){

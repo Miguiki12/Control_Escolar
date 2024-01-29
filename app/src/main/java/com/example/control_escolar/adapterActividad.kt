@@ -1,11 +1,13 @@
 package com.example.control_escolar
 
+import BDLayer.TareasBD
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.listaactividad.view.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -13,6 +15,8 @@ import java.util.*
 
 class adapterActividad(private var mContext: Context, private  var listaactividad:List<DatosActivdad>):
     ArrayAdapter<DatosActivdad>(mContext,0,listaactividad) {
+    var calificados = TareasBD(context).getCalificated()
+
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var layout = LayoutInflater.from(mContext).inflate(R.layout.listaactividad,parent,false)
         var activdad = listaactividad[position]
@@ -22,9 +26,15 @@ class adapterActividad(private var mContext: Context, private  var listaactivida
         layout.txt_Materia_Actividad.setTextColor(activdad.color)
         layout.txt_fecha_actividad.setText(activdad.fecha)
 
+        val total = findValue(calificados,"c_tarea", activdad.c_actividad)
+        layout.text_calificados.text = "$total entregaron/deben entregar ${activdad.totalAlumnos}"
+
+
+        if (total >= Nombre_Escuela.Alumnos.count) layout.image_calificated.isVisible = true
+
 
         if (activdad.especial == 1) layout.text_porciento_actividad.setText(activdad.porciento.toString()+ "% de 100")
-        if (activdad.especial == 0) layout.text_porciento_actividad.setText(activdad.porciento.toString()+ "% de "+activdad.valor)
+        if (activdad.especial == 0) layout.text_porciento_actividad.text = "se promediará la calificación"//layout.text_porciento_actividad.setText(activdad.porciento.toString()+ "% de "+activdad.valor)
 
         if (activdad.fecha == getCurrentDate()){
             layout.cd_Tareas.setBackgroundColor( Color.parseColor("#F7EF8C"))
@@ -49,5 +59,15 @@ class adapterActividad(private var mContext: Context, private  var listaactivida
     fun getCurrentDate(): String {
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         return dateFormat.format(Date())
+    }
+
+    fun findValue(dataTable:MutableList<MutableMap<String, Any>>, cell1:String, value1:String):Int{
+        val foundData = dataTable.find {it[cell1] == value1}
+        //Toast.makeText(context, "$cell1 = $value1 and $cell2 = $value2", Toast.LENGTH_LONG).show()
+        if (foundData != null) {
+            return foundData["total"].toString().toInt()
+        } else {
+            return 0
+        }
     }
 }

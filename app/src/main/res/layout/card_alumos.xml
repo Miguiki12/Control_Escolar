@@ -4,19 +4,19 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
-    android:layout_marginRight="15dp"
-    android:layout_marginLeft="15dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginLeft="5dp"
     android:layout_marginTop="5dp"
     app:cardBackgroundColor="@android:color/white"
     app:cardCornerRadius="5dp"
-    app:cardElevation="2dp"
+    app:cardElevation="0dp"
     app:contentPadding="0dp">
 
     <RelativeLayout
         android:id="@+id/relativelayaout_alumnos"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/card_border">
+        android:layout_height="wrap_content">
+        <!--android:background="@drawable/card_border">-->
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image_alumno"
@@ -70,6 +70,7 @@
             android:layout_below="@+id/lbl_Detalles_Alumno"
             android:layout_toEndOf="@id/image_alumno"
             android:textSize="12dp"
+            android:textStyle="bold"
             android:text="..." />
        <!-- <TextView
             android:id="@+id/lbl_tipoEscuela"

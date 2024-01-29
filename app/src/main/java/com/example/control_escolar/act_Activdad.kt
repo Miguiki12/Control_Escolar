@@ -217,11 +217,12 @@ class act_Activdad : AppCompatActivity() {
     fun CargarTareas(){
         try {
             var tareas = TareasBD.obtenerAll(terminadas)
+            val totalEstudiantes = AlumnosBD(this).getStudentforQualify(fecha)
             listaactivdad.clear()
             if(tareas.moveToFirst()){
                 do{
                     listaactivdad.add(DatosActivdad(tareas.getString(2), tareas.getString(4), tareas.getString(1),tareas.getString(3),
-                        tareas.getString(0), tareas.getString(6).toInt(), tareas.getString(7).toInt(),tareas.getString(5).toInt(),tareas.getString(8).toInt(), tareas.getInt(9)))
+                        tareas.getString(0), tareas.getString(6).toInt(), tareas.getString(7).toInt(),tareas.getString(5).toInt(),tareas.getString(8).toInt(), tareas.getInt(9),totalEstudiantes.count))
                     nuevo += 1
                 }while (tareas.moveToNext())
             }
@@ -241,13 +242,13 @@ class act_Activdad : AppCompatActivity() {
             try {
                 var tareas = TareasBD.obtenerAllFecha(TareasBD.convertdate("$year-${monthOfYear+1}-$dayOfMonth"))
                 fecha = TareasBD.convertdate("$year-${monthOfYear+1}-$dayOfMonth")
-                //Toast.makeText(this, TareasBD.convertdate("$year-${monthOfYear+1}-$dayOfMonth"), Toast.LENGTH_SHORT).show()
+                val totalEstudiantes = AlumnosBD(this).getStudentforQualify(fecha)
                 listaactivdad.clear()
                 if(tareas.moveToFirst()){
                     do{
                         listaactivdad.add(DatosActivdad(tareas.getString(2), tareas.getString(4),
                             tareas.getString(1),tareas.getString(3),tareas.getString(0),
-                            tareas.getString(6).toInt(), tareas.getString(7).toInt(), tareas.getString(5).toInt(), tareas.getString(8).toInt(), tareas.getInt(9)))
+                            tareas.getString(6).toInt(), tareas.getString(7).toInt(), tareas.getString(5).toInt(), tareas.getString(8).toInt(), tareas.getInt(9),totalEstudiantes.count))
                     }while (tareas.moveToNext())
                 }
                 listaActividad.adapter =  adapterActividad(this, listaactivdad)
@@ -262,6 +263,7 @@ class act_Activdad : AppCompatActivity() {
     @SuppressLint("SuspiciousIndentation")
     fun loadActivitysByFecha(date:String){
         var tareas = TareasBD.obtenerAllFecha(TareasBD.convertdate(date))
+        val totalEstudiantes = AlumnosBD(this).getStudentforQualify(fecha)
             try {
                 fecha = TareasBD.convertdate(date)
                 listaactivdad.clear()
@@ -269,7 +271,7 @@ class act_Activdad : AppCompatActivity() {
                     do{
                         listaactivdad.add(DatosActivdad(tareas.getString(2), tareas.getString(4),
                             tareas.getString(1),tareas.getString(3),tareas.getString(0),
-                            tareas.getString(6).toInt(), tareas.getString(7).toInt(), tareas.getString(5).toInt(), tareas.getString(8).toInt(), tareas.getInt(9)))
+                            tareas.getString(6).toInt(), tareas.getString(7).toInt(), tareas.getString(5).toInt(), tareas.getString(8).toInt(), tareas.getInt(9),totalEstudiantes.count))
                             nuevo += 1
                     }while (tareas.moveToNext())
                 }
@@ -288,11 +290,12 @@ class act_Activdad : AppCompatActivity() {
     fun CargarTodasTareas(){
         try {
             var tareas = TareasBD.obtenerAll()
+            val totalEstudiantes = AlumnosBD(this).getStudentforQualify(fecha)
             listaactivdad.clear()
             if(tareas.moveToFirst()){
                 do{
                     listaactivdad.add(DatosActivdad(tareas.getString(2), tareas.getString(4), tareas.getString(1),
-                    tareas.getString(3),tareas.getString(0), tareas.getString(6).toInt(), tareas.getString(7).toInt(), tareas.getString(5).toInt(),tareas.getString(8).toInt(), tareas.getInt(9)))
+                    tareas.getString(3),tareas.getString(0), tareas.getString(6).toInt(), tareas.getString(7).toInt(), tareas.getString(5).toInt(),tareas.getString(8).toInt(), tareas.getInt(9),totalEstudiantes.count))
                 }while (tareas.moveToNext())
             }
             listaActividad.adapter =  adapterActividad(this, listaactivdad)
@@ -305,12 +308,13 @@ class act_Activdad : AppCompatActivity() {
     fun CargarTareasporMateria(c_materia:String){
         try {
             var tareas = TareasBD.obtenerAllbymaterias(terminadas, c_materia)
+            val totalEstudiantes = AlumnosBD(this).getStudentforQualify(fecha)
             listaactivdad.clear()
             if(tareas.moveToFirst()){
                 do{
                     listaactivdad.add(DatosActivdad(tareas.getString(2), tareas.getString(4),
                         tareas.getString(1),tareas.getString(3),tareas.getString(0),
-                        tareas.getString(6).toInt(), tareas.getString(7).toInt(), tareas.getString(5).toInt(),tareas.getString(8).toInt(),tareas.getInt(9)))
+                        tareas.getString(6).toInt(), tareas.getString(7).toInt(), tareas.getString(5).toInt(),tareas.getString(8).toInt(),tareas.getInt(9),totalEstudiantes.count))
                 }while(tareas.moveToNext())
             }
             listaActividad.adapter =  adapterActividad(this, listaactivdad)
@@ -334,12 +338,12 @@ class act_Activdad : AppCompatActivity() {
             Materias()
             return
         }
-        /*if (CargarAspectos().count() == 0) {
+        if (CargarAspectos().count() == 0) {
             Toast.makeText(this, "Debe estructurar la calificacion para agregar actividades", Toast.LENGTH_LONG).show()
             dialog.hide()
             Encuadre()
             return
-        }*/
+        }
 
         //cargamos las materias
         val adaptadorM = ArrayAdapter(this, com.google.android.material.R.layout.support_simple_spinner_dropdown_item,arrayMaterias)
@@ -481,9 +485,11 @@ class act_Activdad : AppCompatActivity() {
         AgregarActividad(1)
         status = "update"
         especial = 0
-        val position = this.arrayMaterias.indexOfFirst { it == listaactivdad[posicion].materia}
+
+        var position = this.arrayMaterias.indexOfFirst {it == listaactivdad[posicion].materia}
+        view.cbx_Materias_actividad.setSelection(position)//position_activity = this.arrayActividades.indexOfFirst { it == listaactivdad[posicion].tipo}
         position_activity = this.arrayActividades.indexOfFirst { it == listaactivdad[posicion].tipo}
-        view.cbx_Materias_actividad.setSelection(position)
+        view.cbx_Aspectos_actividad.setSelection(position_activity)
         view.cbx_Materias_actividad.isEnabled = false
         view.cbx_Aspectos_actividad.isEnabled = false
         view.cbx_Avisar.isVisible = false

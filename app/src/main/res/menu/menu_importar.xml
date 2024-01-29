@@ -10,14 +10,20 @@
         android:icon="@drawable/ic_importar_lista"
         app:showAsAction="always"/>
     <item
-        android:id="@+id/btnm_help_import"
-        android:icon="@drawable/ic_help"
+        android:id="@+id/action_import_file_former"
+        android:icon="@drawable/ic_import_former"
         android:title="Ayuda"
         app:showAsAction="always"/>
 
+
+    <item
+        android:id="@+id/nav_import_recreap"
+        android:title="Importar archivo"
+
+        />
     <item
         android:id="@+id/nav_Nombre_Completo"
-        android:title=" Pegar Nombre Completo"
+        android:title="Pegar Nombre Completo"
 
         />
    <!-- <item

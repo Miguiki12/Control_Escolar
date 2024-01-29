@@ -43,8 +43,8 @@
                 android:id="@+id/cbx_Condicionado"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/cbxsituacion"
-                android:layout_marginTop="10dp"
+                android:layout_below="@+id/text_indicator_date"
+                android:layout_marginTop="20dp"
                 android:text="Condicionado"/>
 
 
@@ -56,6 +56,18 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="20dp"
                 android:entries="@array/Situacion" />
+
+            <TextView
+                android:id="@+id/text_indicator_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cbxsituacion"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                android:text="FECHA DE: "/>
+
+
 
 
             <CheckBox

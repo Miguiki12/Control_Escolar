@@ -13,23 +13,16 @@
     <item
         android:id="@+id/nav_Retardo"
         android:title="Retardo"
-
         />
-
     <item
         android:id="@+id/nav_Reporte"
         android:title="Reporte"
         />
-
  <item
      android:id="@+id/nav_Participacion"
      android:title="Participacion"
-
      />
-    <item
-        android:id="@+id/nav_limpiar"
-        android:title="Normalizar"
-        />
+
     <item
         android:id="@+id/nav_Justificar_Desde"
         android:title="Justificar/Suspender"
@@ -39,8 +32,9 @@
         android:id="@+id/nav_recogido"
         android:title="Se lo llevaron"
         />
-
-
-
+    <item
+        android:id="@+id/nav_limpiar"
+        android:title="Normalizar"
+        />
 
 </menu>

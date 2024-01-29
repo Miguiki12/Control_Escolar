@@ -10,11 +10,14 @@ import android.content.Intent
 import android.database.Cursor
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.icu.util.Calendar
+import android.os.Build
 import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -22,6 +25,8 @@ import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.view_datos_alumno.view.*
 import kotlinx.android.synthetic.main.viewsituacionalumno.view.*
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class adapter_alumnos:RecyclerView.Adapter<adapter_alumnos.ViewHolder>(){
@@ -35,7 +40,7 @@ class adapter_alumnos:RecyclerView.Adapter<adapter_alumnos.ViewHolder>(){
     public  val sexo  = ArrayList<Int>()
     public  val Folio = ArrayList<String>()
     public val status =  ArrayList<String>()
-
+    private var p = 0
     var folio = 0
     public  var posicion = 0
     lateinit var contex: Context
@@ -79,10 +84,12 @@ class adapter_alumnos:RecyclerView.Adapter<adapter_alumnos.ViewHolder>(){
 
             }
         }
+        @RequiresApi(Build.VERSION_CODES.N)
         private fun popupMenus(v:View) {
             try {
                 val popupMenus = PopupMenu(itemView.context, v)
                 popupMenus.inflate(R.menu.menu_opcionesalumno)
+                p = 0
                 popupMenus.setOnMenuItemClickListener {
                     when (it.itemId) {
                         R.id.domiciliar -> {
@@ -101,16 +108,13 @@ class adapter_alumnos:RecyclerView.Adapter<adapter_alumnos.ViewHolder>(){
                             alumnos.moveToPosition(posicion)
                             //alumnos.moveToPosition(posicion)
                             changesexocolor(titulo)
-                            try {
-                                direccion.setText(alumnos.getString(5))
-                                colonia.setText(alumnos.getString(6))
-                                celular.setText(alumnos.getString(8))
-                                email.setText(alumnos.getString(9))
-                                entidad.setText(alumnos.getString(10))
+                            direccion.setText(alumnos.getString(5))
+                            colonia.setText(alumnos.getString(6))
+                            celular.setText(alumnos.getString(8))
+                            email.setText(alumnos.getString(9))
+                            entidad.setText(alumnos.getString(10))
 
-                            }catch (Ex:Exception){
-                                Toast.makeText(itemView.context, Ex.message.toString(),Toast.LENGTH_SHORT).show()
-                            }
+
 
                             android.app.AlertDialog.Builder(itemView.context)
                                 .setView(v)
@@ -138,11 +142,56 @@ class adapter_alumnos:RecyclerView.Adapter<adapter_alumnos.ViewHolder>(){
                         var con = 0
                         var indi = 0
                         var disc = 0
+                        var situation_position = 0
                         v.txt_especificar_discapacidad.isVisible = false
                         v.chx_Discapacitado.setOnCheckedChangeListener { _, isChecked ->
                             v.txt_especificar_discapacidad.isVisible = isChecked
                             v.txt_especificar_discapacidad.text!!.clear()
                         }
+
+
+                        v.text_indicator_date.setOnClickListener {
+                            showCalendar(Formats.getCurrentDate(),colorSituation(situacion.getSelectedItem().toString()).first, v.text_indicator_date)
+                        }
+
+
+                        //mostramos un calendar dependiendo del cambio de situación del alumno
+                        situacion.onItemSelectedListener = object:
+                            AdapterView.OnItemSelectedListener{
+                            @RequiresApi(Build.VERSION_CODES.N)
+                            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                                    situation_position = p2
+
+                                    if (situation_position == 3) {
+                                        var date = ""
+                                        if (p > 0)  date = showCalendar(Formats.getCurrentDate(),colorSituation(situacion.getSelectedItem().toString()).first, v.text_indicator_date)
+                                        v.text_indicator_date.text = "${situacion.getSelectedItem()}:${date}"
+                                        v.text_indicator_date.setTextColor(Color.RED)
+                                        v.text_indicator_date.text = alumnos.getString(30)
+                                        p ++
+                                    }
+                                    if (situation_position == 2){
+                                        var date = ""
+                                        if (p > 0) date = showCalendar(Formats.getCurrentDate(),colorSituation(situacion.getSelectedItem().toString()).first, v.text_indicator_date)
+                                        v.text_indicator_date.text = "${situacion.getSelectedItem()}:${date}"
+                                        v.text_indicator_date.setTextColor(colorSituation(situacion.getSelectedItem().toString()).first)
+                                        v.text_indicator_date.text = alumnos.getString(31)
+                                        p ++
+                                    }
+                                    if (situation_position == 0 || situation_position == 1 || situation_position == 4){
+                                        v.text_indicator_date.setTextColor(colorSituation(situacion.getSelectedItem().toString()).first)
+                                        v.text_indicator_date.text = alumnos.getString(31)
+                                        p = 1
+                                    }
+
+                                }
+
+                            override fun onNothingSelected(p0: AdapterView<*>?) {
+                                TODO("Not yet implemented")
+                            }
+
+                        }
+
                         alumnos.moveToPosition(posicion)
                         changesexocolor(titulo)
                         titulo.text = Nombre[posicion]
@@ -157,49 +206,39 @@ class adapter_alumnos:RecyclerView.Adapter<adapter_alumnos.ViewHolder>(){
                         }
 
                         v.txt_especificar_discapacidad.setText(alumnos.getString(29))
-                        try {
-                            //Toast.makeText(contex, "${Nombre_Escuela.Alumnos.getString(11)} ${Nombre_Escuela.Alumnos.getString(2)}", Toast.LENGTH_SHORT).show()
-                            if (alumnos.getString(11)
-                                    .toString() == "REPETIDOR"
-                            ) situacion.setSelection(0)
-                            if (alumnos.getString(11)
-                                    .toString() == "NUEVO INGRESO"
-                            ) situacion.setSelection(1)
-                            if (alumnos.getString(11)
-                                    .toString() == "ALTA"
-                            ) situacion.setSelection(2)
-                            if (alumnos.getString(11)
-                                    .toString() == "BAJA"
-                            ) situacion.setSelection(3)
-                            if (alumnos.getString(11)
-                                    .toString() == "SIN COMUNICACIÓN"
-                            ) situacion.setSelection(4)
-                        }
-                        catch (Ex:Exception){Toast.makeText(contex, Ex.message.toString(), Toast.LENGTH_SHORT).show()}
+
+                        //si tenemos fecha de baja
+
+                        //colocamos el spinner dependiendo de la situacion
+                        if (alumnos.getString(30) != "" && alumnos.getString(30) != null) situacion.setSelection(colorSituation("BAJA").second)
+                        else situacion.setSelection(colorSituation(alumnos.getString(11)).second)
+
                         android.app.AlertDialog.Builder(itemView.context)
                             .setView(v)
-                            .setPositiveButton("Ok") { dialog, _ ->
+                            .setPositiveButton("Actualizar") { dialog, _ ->
 
                                 if (v.cbx_Condicionado.isChecked) con = 1
                                 else con = 0
 
                                 if (v.chx_Indigena.isChecked) indi = 1
                                 if (v.chx_Discapacitado.isChecked) disc = 1
-                                var f_baja = ""
+                                var f_baja = Formats.convertdate(v.text_indicator_date.text.toString())
                                 if (situacion.selectedItemPosition == 3){//si damos de baja
-                                    f_baja = Formats.getCurrentDate()
+                                    //f_baja = v.text_indicator_date.text.toString()
                                     updateDateunsubscribe(itemView, situacion.getSelectedItem().toString(),con,folio.toString().toInt(),indi,disc,v.txt_especificar_discapacidad.text.toString(),f_baja, )
+                                    p = 0
                                 }
                                 else{//cualquier otro status
-                                    Alumno.Situacion(situacion.getSelectedItem().toString(), con, folio.toString().toInt(),indi, disc, v.txt_especificar_discapacidad.text.toString(), f_baja, folio)
+                                    Alumno.updateSituacionRegistro(situacion.getSelectedItem().toString(), con, folio.toString().toInt(),indi, disc, v.txt_especificar_discapacidad.text.toString(), f_baja, folio)
                                     Toast.makeText(itemView.context, Alumno.error, Toast.LENGTH_SHORT).show()
+                                    p = 0
                                     Reorganizar(v.context)
                                     //CargarAlumnos(v.context)
                                     //Reorganizar(v.context)
                                 }
                                 dialog.dismiss()
                             }
-                            .setNegativeButton("Cancel"){
+                            .setNegativeButton("Cancelar"){
                                     dialog,_->
                                 dialog.dismiss()
                             }
@@ -507,22 +546,42 @@ class adapter_alumnos:RecyclerView.Adapter<adapter_alumnos.ViewHolder>(){
             ManagerImage(viewHolder.itemView.context).loadImageStudents(viewHolder.itemImagen, Folio[position])
         }catch (Ex:Exception){}
 
-
+        alumnos.moveToPosition(position)
         viewHolder.itemfolio.text = Folio[position]
-        viewHolder.itemStaus.text = status[position]
+
+        if (alumnos.getString(30) != ""){
+            viewHolder.itemStaus.setTextColor(colorSituation("BAJA").first)
+            viewHolder.itemStaus.text = "BAJA"
+        } else{
+            viewHolder.itemStaus.setTextColor(colorSituation(status[position]).first)
+            viewHolder.itemStaus.text = status[position]
+        }
         //posicion = position
         //Toast.makeText(viewHolder.itemView.context, Nombre[position] +" "+ sexo[position].toString(),Toast.LENGTH_SHORT).show()
-        if (status[position] == "BAJA") viewHolder.itemStaus.setTextColor(Color.RED)
-        if (status[position] == "ALTA") viewHolder.itemStaus.setTextColor(Color.parseColor("#1CB0F6"))
-        if (status[position] == "NUEVO INGRESO") viewHolder.itemStaus.setTextColor(Color.parseColor("#57CB05"))
-        if (status[position] == "REPETIDOR") viewHolder.itemStaus.setTextColor(Color.parseColor("#FFC501"))
-        if (status[position] == "SIN COMUNICACIÓN") viewHolder.itemStaus.setTextColor(Color.parseColor("#5A2389"))
+        /*if (status[position] == "BAJA") viewHolder.itemStaus.setTextColor(colorSituation(status[position]))
+        if (status[position] == "ALTA") viewHolder.itemStaus.setTextColor(colorSituation(status[position]))
+        if (status[position] == "NUEVO INGRESO") viewHolder.itemStaus.setTextColor(colorSituation(status[position]))
+        if (status[position] == "REPETIDOR") viewHolder.itemStaus.setTextColor(colorSituation(status[position]))
+        if (status[position] == "SIN COMUNICACIÓN") viewHolder.itemStaus.setTextColor(colorSituation(status[position]))*/
 
         if (sexo[position] == 0){
             viewHolder.itemNombre.setTextColor(Color.MAGENTA)
         }
         else viewHolder.itemNombre.setTextColor(Color.parseColor("#1A8AF9"))
     }
+
+
+    fun colorSituation(situation: String): Pair<Int, Int> {
+         return   when (situation) {
+                "BAJA" -> Pair(Color.RED, 3)
+                "ALTA" -> Pair(Color.parseColor("#1CB0F6"), 2)
+                "NUEVO INGRESO" -> Pair(Color.parseColor("#57CB05"), 1)
+                "REPETIDOR" -> Pair(Color.parseColor("#FFC501"), 0)
+                "SIN COMUNICACIÓN" -> Pair(Color.parseColor("#5A2389"), 4)
+                else -> Pair(Color.BLACK,-1)// Valor predeterminado, puedes ajustar según tus necesidades
+            }
+    }
+
 
     public  fun clearAll(){
         Nombre.clear()
@@ -574,8 +633,7 @@ class adapter_alumnos:RecyclerView.Adapter<adapter_alumnos.ViewHolder>(){
     fun updateDateunsubscribe(view: View, situcaion:String, condicionado:Int, folio:Int, indigena:Int, discapacitado:Int, especifique:String, f_baja:String){
 
         android.app.AlertDialog.Builder(view.context).setTitle("Dar de baja a  "+Nombre[posicion]).setIcon(R.drawable.ic_baseline_warning_24).setMessage("¿Dar de baja al alumno?").setPositiveButton("Yes") { dialog, _ ->
-            Alumno.Situacion(
-                situcaion,
+            Alumno.updateSituacionBaja(
                 condicionado,
                 folio,
                 indigena,
@@ -629,6 +687,49 @@ class adapter_alumnos:RecyclerView.Adapter<adapter_alumnos.ViewHolder>(){
                 .into(imageView)
         }
     }
+    @RequiresApi(Build.VERSION_CODES.N)
+    public fun showCalendar(fecha:String, color:Int, textView: TextView): String {
+        var date = ""
+        val calendar = Calendar.getInstance()
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val initialDate = dateFormat.parse(fecha) ?: Date()
+
+        // Obtiene el año, mes y día de la fecha inicial
+        calendar.time = initialDate
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        // Crea un DatePickerDialog y configúralo
+        val datePickerDialog = android.app.DatePickerDialog(
+            contex,
+            { _, selectedYear, selectedMonth, selectedDay ->
+                val selectedDate = "$selectedYear-${selectedMonth + 1}-$selectedDay"
+                 textView.text =  selectedDate
+                // Puedes hacer algo con la fecha seleccionada, como mostrarla en un TextView
+                date = selectedDate
+            },
+            year,
+            month,
+            day
+        )
+
+        try {
+            // Obtén el DatePicker personalizado del DatePickerDialog
+            val customDatePicker = datePickerDialog.datePicker
+
+            // Configura el color de fondo del DatePicker
+            customDatePicker.setBackgroundColor(color)
+
+            // Mostrar el diálogo de selección de fecha
+            datePickerDialog.show()
+        } catch (ex: Exception) {
+            Toast.makeText(contex, ex.message.toString(), Toast.LENGTH_SHORT).show()
+        }
+
+        return date
+    }
+
 
 
     /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

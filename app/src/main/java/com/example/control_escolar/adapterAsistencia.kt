@@ -62,6 +62,13 @@ class adapterAsistencia(private var mContext: Context, private  var listaasisten
             layout.txt_status_Asistencia.text = "Suspendido"
             layout.txt_status_Asistencia.isVisible = true
         }
+
+        if (asistencia.status == 4){
+            layout.txt_status_Asistencia.setBackgroundColor(Color.BLACK)
+            layout.cbx_asistioAsistencia.isChecked = true
+            layout.txt_status_Asistencia.text = "Se lo llevaron"
+            layout.txt_status_Asistencia.isVisible = true
+        }
         return layout
     }
 

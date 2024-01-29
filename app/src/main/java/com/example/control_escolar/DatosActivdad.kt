@@ -2,7 +2,7 @@ package com.example.control_escolar
 
 import java.io.Serializable
 
-class DatosActivdad(var nombre:String, var tipo:String, var fecha:String, var materia:String, var c_actividad:String, var color:Int, var terminada:Int,var porciento:Int, var especial:Int, var valor: Int): Serializable {
+class DatosActivdad(var nombre:String, var tipo:String, var fecha:String, var materia:String, var c_actividad:String, var color:Int, var terminada:Int,var porciento:Int, var especial:Int, var valor: Int,var totalAlumnos: Int): Serializable {
 
 }
 

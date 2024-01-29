@@ -28,12 +28,12 @@
         />
     <item
         android:id="@+id/datos_tutor_1"
-        android:title="Datos Tutor 1"
+        android:title="Tutor Mensajes"
 
         />
     <item
         android:id="@+id/datos_tutor_2"
-        android:title="Datos Tutor 2"
+        android:title="Tutor Auxiliar"
 
         />
     <item

@@ -40,6 +40,15 @@
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/txt_Nombre_Calificar" />
 
+    <TextView
+        android:id="@+id/txt_situacin_Calificar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Detalles_Calificar" />
+
     <EditText
         android:id="@+id/edit_calificar"
         android:layout_width="35dp"

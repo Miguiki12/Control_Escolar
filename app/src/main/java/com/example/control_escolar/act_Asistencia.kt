@@ -1,6 +1,7 @@
 package com.example.control_escolar
 
 import BDLayer.*
+import LogicLayer.Formats
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Context
@@ -67,8 +68,6 @@ class act_Asistencia : AppCompatActivity() {
         participacionBD = ParticipacionBD(this)
         pendientesBD = PendienteBD(this)
         JustificarBD = JustificarBD(this)
-        //JustificarBD.deletetable()
-        //JustificarBD.Createtable()
         getStatusSuspendido()
 
 
@@ -86,6 +85,7 @@ class act_Asistencia : AppCompatActivity() {
         }*/
         clickToList()
         myCalendar = getInstance()
+        //cargamos la asistencia y mostramos la fecha actaul
         updateLabel(myCalendar)
 
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.navigation_move_dates_activity)
@@ -165,7 +165,7 @@ class act_Asistencia : AppCompatActivity() {
                 do{
                     asis = asistencia.getString(5).toInt() == 1
                     listaasistencia.add(
-                        Asistencia( asistencia.getString(0)+ " " +asistencia.getString(1)+" " +asistencia.getString(2),  //PictureLoader.loadPicture(this,asistencia.getBlob(4))
+                        Asistencia( asistencia.getString(0)+ " " +asistencia.getString(1),  //PictureLoader.loadPicture(this,asistencia.getBlob(4))
                             "N_lista " +asistencia.getString(7),R.drawable.alumno, asis, asistencia.getString(6).toInt(), asistencia.getString(3).toInt(),asistencia.getString(8), asistencia.getString(9).toInt(), asistencia.getString(10))
                     )
                 }while (asistencia.moveToNext())
@@ -176,13 +176,12 @@ class act_Asistencia : AppCompatActivity() {
         }
         finally {
             asistencia.close()
-            asistencia.close()
         }
         return asistencia.count
     }
 
 
-    fun CargarAlumnos(){
+    /*fun CargarAlumnos(){
         var count = 0
         listaasistencia.clear()
         try {
@@ -200,6 +199,30 @@ class act_Asistencia : AppCompatActivity() {
             }
         }catch (Ex:Exception){
             Toast.makeText(this, Ex.message.toString(),Toast.LENGTH_SHORT).show()
+        }
+    }*/
+
+
+    fun CargarAlumnos(){
+        val asistencia = AlumnosBD(this).getStudentForAsistence(Formats.convertdate(fecha))
+        listaasistencia.clear()
+        try {
+            if(asistencia.moveToFirst()){
+                do{
+                    listaasistencia.add(
+                        Asistencia( asistencia.getString(0)+ " " +asistencia.getString(1),  //PictureLoader.loadPicture(this,asistencia.getBlob(4))
+                            "N_lista " +asistencia.getString(6),R.drawable.alumno, false, asistencia.getString(5).toInt(), asistencia.getString(3).toInt(),asistencia.getString(7), 0, asistencia.getString(8))
+                    )
+                }while (asistencia.moveToNext())
+
+            }
+            listaAsistencia.adapter =  adapterAsistencia(this, listaasistencia, 0,suspendido)
+        }catch (Ex:Exception){
+            Toast.makeText(this, Ex.message.toString(),Toast.LENGTH_SHORT).show()
+        }
+        finally {
+            asistencia.close()
+
         }
     }
 
@@ -384,6 +407,7 @@ class act_Asistencia : AppCompatActivity() {
                 }
                 count++
             }
+                insertPending()
             }
             .setNegativeButton("Correo"){
                     dialog,_->
@@ -415,6 +439,7 @@ class act_Asistencia : AppCompatActivity() {
                     R.id.nav_limpiar->updatestatus(0)
                     R.id.nav_Justificar_Desde->Justificarfaltas()
                     R.id.nav_Reporte-> gotoReporte()
+                    R.id.nav_recogido -> updatestatus(4)
                 }
                 true
             }
@@ -583,6 +608,7 @@ class act_Asistencia : AppCompatActivity() {
 
         view.btn_imprimir_reporte.setOnClickListener {
             try {
+
                 if (pdf.asistencia_mes(
                         AsistenciaBD.getIntervalMonth(fecha),
                         AsistenciaBD.asistenciaMes(date[1].toInt(), date[0].toInt()),
@@ -599,6 +625,7 @@ class act_Asistencia : AppCompatActivity() {
 
         view.btn_mes_reporte.setOnClickListener{
             try {
+                Toast.makeText(this, fecha, Toast.LENGTH_SHORT).show()
                 val excel =  createExcel(this)
                 excel.printFaltasMes("Noviembre",
                     AsistenciaBD.asistenciaDias(date[1].toInt(),date[0].toInt()),
@@ -634,10 +661,14 @@ class act_Asistencia : AppCompatActivity() {
 
 
     fun updatestatus(status:Int){
-        val currentPosition = listaAsistencia.firstVisiblePosition
-        listaasistencia[posicion].status = status
-        listaAsistencia.adapter = adapterAsistencia(this, listaasistencia, 0, suspendido)
-        listaAsistencia.setSelection(currentPosition)
+        if(listaasistencia[posicion].status <= 1 || listaasistencia[posicion].status == 4) {
+            if(AsistenciaBD.updateAtNormalAttendance(listaasistencia[posicion].Folio, fecha, 1, status)) {
+                val currentPosition = listaAsistencia.firstVisiblePosition
+                listaasistencia[posicion].status = status
+                listaAsistencia.adapter = adapterAsistencia(this, listaasistencia, 0, suspendido)
+                listaAsistencia.setSelection(currentPosition)
+            }
+        }else{Toast.makeText(this,"Para quitar la suspencion y justificacion eliminelas directamente del historial de la misma",Toast.LENGTH_LONG).show()}
     }
 
     fun InsertJustify(tipo: Int, F_incio:String, F_fin:String, c_materia:Int){
@@ -675,11 +706,11 @@ class act_Asistencia : AppCompatActivity() {
         if (betweendata(F_incio, F_fin, fecha)) updatestatus(tipo)
     }
 
-    fun updateNormalStatus(){
-        if(AsistenciaBD.updateAtNormalAttendance(listaasistencia[posicion].Folio, fecha, 1)) {
+    fun updateNormalStatus() {
+        if (AsistenciaBD.updateAtNormalAttendance(listaasistencia[posicion].Folio, fecha, 1, 0)) {
             updatestatus(0)
         }
-        Toast.makeText(this,AsistenciaBD.error, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, AsistenciaBD.error, Toast.LENGTH_SHORT).show()
     }
 
     fun insertPending(){

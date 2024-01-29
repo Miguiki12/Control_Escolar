@@ -55,6 +55,14 @@ class crearPDF(var context: Context) {
     var tBajasH = 0
     var tAltasM = 0
     var tAltasH = 0
+    var tInscripcionM = 0
+    var tInscripcionH = 0
+    var tExistenciaM = 0
+    var tExistenciaH = 0
+    var tAprovadosM = 0
+    var tAprovadosH = 0
+    var tReprovadosM = 0
+    var tReprovadosH = 0
 
 
 
@@ -148,7 +156,9 @@ class crearPDF(var context: Context) {
             // Añadimos contenido al documento
             documento.add(Paragraph( "Estimados padres o tutores:"))
             documento.add(Paragraph("\n"))
-            documento.add(Paragraph("Le informamos que su hijo/a  tiene pendiente la entrega de la actividad escolar asignada el ["+fecha+"]"))
+            //checamos si es del mismo dia la actividad
+            if (Formats.convertdate(fecha) == Formats.getCurrentDate()) documento.add(Paragraph("Se le informa que el dia  ($fecha) se trabajó con la actividad descrita abajo"))
+            else documento.add(Paragraph("Le informamos que su hij@  tiene pendiente la entrega de la actividad escolar asignada el ["+fecha+"]"))
             documento.add(Paragraph("\nACTIVIDAD\n\n"+Descripcion+"."))
             documento.add(Paragraph("Le recordamos que la entrega de actividades es esencial para el buen rendimiento académico de su hij@."))
             documento.add(Paragraph("Le pedimos que sea realizada a la brevedad y tome las medidas necesarias para asegurar su entrega."))
@@ -334,7 +344,8 @@ class crearPDF(var context: Context) {
     @SuppressLint("SuspiciousIndentation")
     @RequiresApi(Build.VERSION_CODES.N)
     fun asistencia_mes(fechaInterval:String, asistencia:MutableList<MutableMap<String, Any>>, Dias:Cursor, totalsexo: MutableList<MutableMap<String, Any>>, alumnos:Int, context: Context):Boolean{
-        val documento = Document()
+
+        val documento = Document(PageSize.LETTER.rotate())
         val table = PdfPTable(Dias.count+1)
         try {
             //Ruta del documento
@@ -1172,7 +1183,7 @@ class crearPDF(var context: Context) {
         contentByte.restoreState()
     }
 
-    fun addTableAspects(up:Int, right:Int, writer: PdfWriter, name:String, percent:String, value1: String, value2: String){
+    fun addTableAspects(up:Int, right:Int, writer: PdfWriter, name:String, percent:String, value1: String, value2: String, value3:String){
         val table = PdfPTable(3)
         table.totalWidth = 1.3f * 72 / 1.54f//PageSize.LETTER.width
         table.isLockedWidth = false
@@ -1182,9 +1193,9 @@ class crearPDF(var context: Context) {
         // Tamaño de la celda personalizada (8.6 x 5.4 cm)
         val celdaAlto = 1.2f * 72 / 2.54f // Convertir cm a puntos (1 cm = 72 puntos)
 
-        // Agregar celda para cada credencial
+        // Agregar celda para cada aspecto
         val cell1 = PdfPCell(Phrase(name +"\n"+ percent + "\n"+ value1, fuente))
-        val cell2 = PdfPCell(Phrase("Total\n$value2", fuente))
+        val cell2 = PdfPCell(Phrase("Total\n$value2\n$value3", fuente))
         val cell3 = PdfPCell(Phrase("Total"))
         //Asignamos tamaño a las celdas
 
@@ -1299,26 +1310,32 @@ class crearPDF(var context: Context) {
                     val deliveredActivitys = findValuePartials(delivered, "activity", "matter", "folio", type_aspects[i],materias.getString(1), folio.toString())
                     val totalActivitys = findValuePartials(allActivity, "activity", "matter", type_aspects[i],materias.getString(1))
                     val value_activity = findValueActivity(aspectos, "name", "n_matter", type_aspects[i],materias.getString(1))
+                    var calification = 0.0f
 
                     //SI TENEMOS POR LO MENOS UNA ACTIVIDAD PARA NO DIVIDIR EN CERO
                     if (totalActivitys > 0 ){
-                        result = (deliveredActivitys.toFloat()/totalActivitys.toFloat())
+                        result = (deliveredActivitys.first.toFloat()/totalActivitys.toFloat())
+                        calification = (deliveredActivitys.second.toFloat()/totalActivitys.toFloat())
                         cal_parcial += result * value_activity
                     }
                     else{
-                        result = (deliveredActivitys.toFloat()/1)
+                        result = (deliveredActivitys.first.toFloat()/1)
+                        calification = (deliveredActivitys.second.toFloat()/1)
                         cal_parcial += result * value_activity
                     }
                     val total_aspecto = result * value_activity
+                    calification *= value_activity
+                    calification /= 100
+                    total_parcial += calification
                     //cb.showTextAligned(PdfContentByte.ALIGN_LEFT,"${roundDecimalFloat(result*10,1)}",x+288+derecha, y-(arriba+15),0f )
                     ///addTableAspects(arriba, derecha, writer, type_aspects[i], "$value_activity%","$deliveredActivitys/$totalActivitys","${roundDecimalFloat(result*10,1)}")
-                    addTableAspects(arriba, derecha, writer, type_aspects[i], "$value_activity%","$deliveredActivitys/$totalActivitys","${roundDecimalFloat(total_aspecto,1)}")
+                    addTableAspects(arriba, derecha, writer, type_aspects[i], "$value_activity%","${deliveredActivitys.first}/$totalActivitys","${roundDecimalFloat(total_aspecto,1)}", calification.toString())
                     derecha += 60
                 }
                 //encabezado del parcial y su calificacion en total
                 //cb.showTextAligned(PdfContentByte.ALIGN_LEFT,"Parcial",x+130+derecha, y-arriba,0f )
                 //cb.showTextAligned(PdfContentByte.ALIGN_LEFT,"${roundDecimalFloat(cal_parcial, 1)}",x+135+(derecha), y-(arriba+15),0f )
-                total_parcial += roundDecimalFloat(cal_parcial, 1)
+                //total_parcial += roundDecimalFloat(cal_parcial, 1)
                 //tabla calificacion del parcial
                 addTableTotal(arriba, derecha+1, writer, "Parcial", total_parcial.toString())
                 //cb.setFontAndSize(BaseFont.createFont(),7f)
@@ -1326,7 +1343,7 @@ class crearPDF(var context: Context) {
                 cb.setFontAndSize(BaseFont.createFont(),8f)
                 //cb.showTextAligned(PdfContentByte.ALIGN_LEFT,"Asistencia",x+172+derecha, y-arriba,0f )
                 //cb.showTextAligned(PdfContentByte.ALIGN_LEFT,faltas,x+173+(derecha), y-(arriba+15),0f )
-                addTableTotal(arriba, derecha+57, writer, "Asistencia", faltas)
+                addTableTotal(arriba, derecha+57, writer, "Fal/Asis", faltas)
                 //nombre de la materia
                 cb.setFontAndSize(BaseFont.createFont(),11f)
                 //cb.showTextAligned(PdfContentByte.ALIGN_LEFT,materias.getString(1),x+39, y-(arriba + 10),0f )
@@ -1449,14 +1466,14 @@ class crearPDF(var context: Context) {
                 for(i in 1..3) {
                    val points = findValuePartials(calificacion,"n_materia","folio","periodo",cursor.getString(1),folio.toString(),i.toString())
                     // Color en formato entero (por ejemplo: -10527822)
-                    final += points
+                    final += points.first
                     val colorEntero = cursor.getInt(2)
 
                     // Crear el objeto BaseColor con el valor entero
                     val textColor = BaseColor(colorEntero)
                     cb.setColorFill(textColor)
                     //cb.showTextAligned(PdfContentByte.ALIGN_LEFT,points.toString(),x+140+derecha, y-arriba,0f )
-                    parciales[i - 1] = points.toFloat()
+                    parciales[i - 1] = points.first.toFloat()
                     derecha += 45
                 }
 
@@ -1902,6 +1919,15 @@ class crearPDF(var context: Context) {
         tBajasM = 0
         tAltasH = 0
         tAltasM = 0
+        tInscripcionM = 0
+        tInscripcionH = 0
+        tExistenciaM = 0
+        tExistenciaH = 0
+        tAprovadosM = 0
+        tAprovadosH = 0
+        tReprovadosM = 0
+        tReprovadosH = 0
+
     }
 
     fun fillTableStadisticRepit(table:PdfPTable){
@@ -1920,6 +1946,25 @@ class crearPDF(var context: Context) {
         clearTotals()
     }
     fun fillTableStadisticRegister(table:PdfPTable){
+        table.addCell(addCell(tAltasH.toString(),1))
+        table.addCell(addCell(tAltasM.toString(),0))
+        table.addCell(addCell((tAltasH + tAltasM).toString(),2))
+        table.addCell(addCell(tNuevoH.toString(),1))
+        table.addCell(addCell(tNuevoM.toString(),0))
+        table.addCell(addCell((tNuevoH + tNuevoM).toString(),2))
+        table.addCell(addCell(tBajasH.toString(),1))
+        table.addCell(addCell(tBajasM.toString(),0))
+        table.addCell(addCell((tBajasH + tBajasM).toString(),2))
+        val totalH = tAltasH + tNuevoH + tBajasH
+        val totalM = tAltasM + tNuevoM + tBajasM
+        val totalT = totalH + totalM
+        table.addCell(addCell((totalH).toString(),1))
+        table.addCell(addCell((totalM).toString(),0))
+        table.addCell(addCell((totalT).toString(),2))
+        clearTotals()
+    }
+
+    fun fillTableStadisticFinal(table:PdfPTable){
         table.addCell(addCell(tAltasH.toString(),1))
         table.addCell(addCell(tAltasM.toString(),0))
         table.addCell(addCell((tAltasH + tAltasM).toString(),2))
@@ -2340,6 +2385,10 @@ class crearPDF(var context: Context) {
         totalM += m
         totalH += h
         totalT += total
+
+        tNuevoH += h
+        tNuevoM += m
+
         var phraseContentM = Phrase(m.toString(),fuenteM)
         var phraseContentH = Phrase(h.toString(),fuenteH)
         if (m == 0) phraseContentM = Phrase("",fuenteM)
@@ -2498,7 +2547,6 @@ class crearPDF(var context: Context) {
 
     fun abrirdocumento(nombre:String,activity: Activity){
         val ruta =  this.ruta+ "$nombre.pdf"
-        //Toast.makeText(activity.applicationContext, ruta, Toast.LENGTH_SHORT).show()
         val file = File(ruta)
         val uri = FileProvider.getUriForFile(activity, "com.example.control_escolar.fileprovider", file)
         val intent = Intent(Intent.ACTION_VIEW)
@@ -2547,18 +2595,19 @@ class crearPDF(var context: Context) {
         }
     }
 
-    fun findValuePartials(dataTable: MutableList<MutableMap<String, Any>>, cell1: String, cell2: String, cell3:String, value1: String, value2: String, value3: String): Int {
+    fun findValuePartials(dataTable: MutableList<MutableMap<String, Any>>, cell1: String, cell2: String, cell3:String, value1: String, value2: String, value3: String): Pair<Int, Int> {
         val foundData = dataTable.find { it[cell1] == value1 && it[cell2] == value2 && it[cell3] == value3 }
 
         return if (foundData != null) {
             val intValue1 = foundData["total"].toString().toInt()
-            // Puedes calcular el segundo entero aquí si es necesario
-            //Toast.makeText(context,value3, Toast.LENGTH_SHORT).show()
-            intValue1
+            val intValue2 = foundData["sumcalification"].toString().toInt()
+            Pair(intValue1, intValue2)
         } else {
-            0
+            Pair(0, 0)
         }
     }
+
+
 
     fun findValuePartials(dataTable: MutableList<MutableMap<String, Any>>, cell1: String, cell2: String, value1: String, value2: String):Int {
         val foundData = dataTable.find { it[cell1] == value1 && it[cell2] == value2 }

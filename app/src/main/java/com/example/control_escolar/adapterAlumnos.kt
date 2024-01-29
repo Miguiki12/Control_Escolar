@@ -6,17 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import kotlinx.android.synthetic.main.listaalumnos.view.*
-
-import kotlinx.android.synthetic.main.listaasistencia.view.*
 import kotlinx.android.synthetic.main.listaasistencia.view.imageView
-import kotlinx.android.synthetic.main.listaasistencia.view.txt_DetallesAsistencia
-import kotlinx.android.synthetic.main.listaasistencia.view.txt_NombreAsistencia
 
 
 class adapterAlumnos(private var mContext: Context, private  var listaalumnos:List<DatosAlumnos>):
     ArrayAdapter<DatosAlumnos>(mContext,0,listaalumnos) {
+
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var layout = LayoutInflater.from(mContext).inflate(R.layout.listaalumnos,parent,false)
         var alumnos = listaalumnos[position]
@@ -33,6 +29,10 @@ class adapterAlumnos(private var mContext: Context, private  var listaalumnos:Li
         }*/
         if (alumnos.sexo == 0){
             layout.txt_Nombre_Alumno.setTextColor(Color.MAGENTA)
+            //Toast.makeText(mContext, alumnos.nombre+" "+alumnos.sexo.toString(), Toast.LENGTH_SHORT).show()
+        }
+        if (alumnos.sexo == 1){
+            layout.txt_Nombre_Alumno.setTextColor(Color.parseColor("#1A8AF9"))
             //Toast.makeText(mContext, alumnos.nombre+" "+alumnos.sexo.toString(), Toast.LENGTH_SHORT).show()
         }
         return layout

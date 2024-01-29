@@ -8,6 +8,7 @@
     <string name="sexoi">Sexo del alumno</string>
 
 
+
     <string-array name="Grado">
         <item>1ro</item>
         <item>2do</item>
@@ -58,6 +59,13 @@
         <item>Femenino</item>
     </string-array>
 
+    <string-array name="SituationShort">
+        <item>ALTA</item>
+        <item>NUEVO INGRESO</item>
+        <item>REPETIDOR</item>
+
+    </string-array>
+
 
     <string-array name="Materias">
         <item>Matematicas</item>
@@ -72,6 +80,7 @@
         <item>Tarea</item>
         <item>Examen</item>
         <item>Proyecto</item>
+        <item>Otro : Especifique</item>
     </string-array>
 
     <string-array name="tipo_escuela">
@@ -134,6 +143,15 @@
         <item>Parcial 5</item>
     </string-array>
 
+
+    <array name="ESTADISTICAS">
+         <item>Estadistica 1</item>
+         <item>Estadistica 2</item>
+         <item>Estadistica 3</item>
+         <item>Estadistica 4</item>
+    </array>
+
+
     <string name="partials">SELECCIONE EL PERIODO</string>
     <string name="matters">SELECCIONE LA MATERIA</string>
     <string name="entidad">ENTIDAD FEDERATIVA</string>
@@ -142,6 +160,7 @@
     <string name="turno">Seleccione el Turno </string>
     <string name="ciclo">Seleccione el Ciclo </string>
     <string name="tipo">Seleccione Tipo de Escuela </string>
+    <string name="situacion">INDIQUE LA SITUACION DEL ALUMNO</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

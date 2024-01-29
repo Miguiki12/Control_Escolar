@@ -7,15 +7,12 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:backgroundTint="#0BD5EF"
         tools:context=".act_Alumno">
-
 
 
         <androidx.cardview.widget.CardView
@@ -59,6 +56,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/txtObligatorios"
+                    android:layout_marginTop="10dp"
                     android:hint="Nombre"
                     android:inputType="textCapSentences" />
 
@@ -67,6 +65,7 @@
                     android:id="@+id/txtApellidop_alumno"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:layout_below="@+id/txtNombre_alumno"
                     android:hint="Apellido paterno"
                     android:inputType="textCapSentences" />
@@ -75,18 +74,48 @@
                     android:id="@+id/txtApellidom_alumno"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:layout_below="@+id/txtApellidop_alumno"
                     android:hint="Apellido materno"
                     android:inputType="textCapSentences" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/edit_BirthdateorCurp_student"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/txtApellidom_alumno">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/text_BirthdateorCurp_student"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#FDFDFD"
+                        android:inputType="textCapSentences"
+                        android:hint="Curp o YYYY-MM-dd"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <Spinner
+                    android:id="@+id/spinner_situation_student"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_below="@id/edit_BirthdateorCurp_student"
+                    android:layout_marginTop="10dp"
+                    android:entries="@array/SituationShort"
+                    android:prompt="@string/situacion"
+                    android:spinnerMode="dialog" />
 
                 <Spinner
                     android:id="@+id/cbxSexo_alumno"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:layout_below="@id/txtApellidom_alumno"
+                    android:layout_below="@id/spinner_situation_student"
                     android:layout_marginTop="10dp"
                     android:entries="@array/Sexo"
-                    android:prompt="@string/ciclo"
+                    android:prompt="@string/sexoi"
                     android:spinnerMode="dialog" />
 
 

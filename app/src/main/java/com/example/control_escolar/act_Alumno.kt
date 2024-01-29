@@ -36,7 +36,6 @@ class act_Alumno : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.supportActionBar?.title = "Alumnos"
-        //this.supportActionBar?.hide()
         setContentView(R.layout.activity_act_alumno)
         Alumno = AlumnosBD(this)
 
@@ -101,12 +100,12 @@ class act_Alumno : AppCompatActivity() {
                 if (sexo.getSelectedItem().toString() == "Femenino") sexo_1 = 0
                 //Toast.makeText(this, sexo_1.toString(), Toast.LENGTH_SHORT).show()
                 if (nombre.text.length > 0 && apellidop.text.length > 0){
-                if (Alumno.InsertAlumno(nombre.text.toString(), apellidop.text.toString(), apellidom.text.toString(), sexo_1)) {
+                /*if (Alumno.InsertAlumno(nombre.text.toString(), apellidop.text.toString(), apellidom.text.toString(), sexo_1)) {
                     Toast.makeText(this, Alumno.error, Toast.LENGTH_SHORT).show()
                     //listaalumnos.add(DatosAlumnos(nombre.text.toString() + " " + apellidop.text.toString() + " " + apellidom.text.toString(),"",R.drawable.alumno,"", sexo_1))
                     //listaalumnos.clear()
                     CargarAlumnos()
-                }
+                }*/
 
                 }else Toast.makeText(this, "Nombre y apellido paterno son obligatorios", Toast.LENGTH_SHORT).show()
 
@@ -253,7 +252,7 @@ class act_Alumno : AppCompatActivity() {
                             if (condicionado.isChecked) con = 1
                             else con = 0
 
-                        if(Alumno.Situacion(situacion.getSelectedItem().toString(), con, folio.toString().toInt(),indi, disc, especifique.text.toString(), "" , folio.toInt())){
+                        if(Alumno.updateSituacionRegistro(situacion.getSelectedItem().toString(), con, folio.toString().toInt(),indi, disc, especifique.text.toString(), "" , folio.toInt())){
                             CargarAlumnos()
                         }
                         Toast.makeText(this, Alumno.error, Toast.LENGTH_SHORT).show()
